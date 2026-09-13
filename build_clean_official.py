@@ -29,6 +29,13 @@ def build():
     data = json.loads(data_raw)
     coreq = json.loads(coreq_raw)
 
+    # Exclure ELEN0450-1 de l'Informatique (ne compte pas comme option d'info)
+    for item in data.get("layout", {}).get("content", []):
+        if item.get("h2") == "Domaine de l'Informatique":
+            for sub in item.get("content", []):
+                if sub.get("h3") == "Bloc 3":
+                    sub["list"] = [c for c in sub["list"] if c != "ELEN0450-1"]
+
     # Extraction des domaines et ECTS
     domaines = {}
     ects_map = {}
@@ -67,7 +74,7 @@ def build():
             "name": "Master en Ingénieur Civil en Informatique",
             "domain": "Domaine de l'Informatique",
             "desc": "Systèmes logiciels complexes, algorithmique, réseaux, cybersécurité et intelligence artificielle.",
-            "courses": ["INFO0062-1", "INFO0902-1", "INFO0010-4", "INFO0012-2", "INFO0054-1", "INFO8006-1", "INFO0009-2", "INFO9012-1", "ELEN0450-1"]
+            "courses": ["INFO0062-1", "INFO0902-1", "INFO0010-4", "INFO0012-2", "INFO0054-1", "INFO8006-1", "INFO0009-2", "INFO9012-1"]
         },
         {
             "id": "dats",
