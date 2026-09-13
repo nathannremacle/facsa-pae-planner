@@ -1,9 +1,13 @@
 # FACSA PAE Planner — Outil d'aide à la décision pour le PAE et les Masters
 
+[![Live App](https://img.shields.io/badge/Application_en_ligne-facsa--pae--planner.vercel.app-00707f?style=for-the-badge&logo=vercel)](https://facsa-pae-planner.vercel.app/)
+
 [![ULiège](https://img.shields.io/badge/ULi%C3%A8ge-FACSA-f07f3c.svg)](https://www.facsa.uliege.be/)
 [![Bachelier](https://img.shields.io/badge/Programme-ABICIV0099-00707f.svg)](https://www.programmes.uliege.be/cocoon/20242025/programmes/ABICIV0099_C.html)
 [![Compatibilité](https://img.shields.io/badge/R%C3%A9trocompatibilit%C3%A9-100%25%20Officielle-137333.svg)](https://www.mmm.uliege.be/facsa/horaires/ABICIV0099)
 [![License](https://img.shields.io/badge/Licence-MIT-blue.svg)](LICENSE)
+
+> 🌐 **L'outil est accessible directement en ligne sur : [facsa-pae-planner.vercel.app](https://facsa-pae-planner.vercel.app/)**
 
 Application web interactive conçue pour les étudiants et la **Faculté des Sciences Appliquées (FACSA)** de l'**Université de Liège (ULiège)**. 
 
