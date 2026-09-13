@@ -17,7 +17,7 @@ Le système permet de composer son **Programme Annuel de l'Étudiant (PAE)**, de
 
 <p align="center">
   <a href="https://facsa-pae-planner.vercel.app/">
-    <img src="docs/preview.png" alt="Aperçu de l'interface FACSA PAE Planner" width="850">
+    <img src="docs/app-preview.png" alt="Aperçu de l'interface FACSA PAE Planner" width="850">
   </a>
 </p>
 <p align="center">
