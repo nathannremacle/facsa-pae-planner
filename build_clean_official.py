@@ -1089,10 +1089,12 @@ def build():
           for (const c of this.BLOC1) this.acquis[c] = true;
           for (const c of this.BLOC2) this.acquis[c] = true;
         }
+        this.refreshMasterOrder();
         this.saveStorage();
       },
       resetAcquis() {
         this.acquis = {};
+        this.refreshMasterOrder();
         this.saveStorage();
       },
       saveStorage() {
@@ -1138,9 +1140,22 @@ def build():
       },
 
       masterFilter: 'all',
+      masterOrder: [],
 
-      // Analyse des 12 Masters et calcul des accès (Section 3)
-      get mastersAnalysis() {
+      // Calcule et mémorise l'ordre de tri des Masters (rafraîchi uniquement au changement de section)
+      refreshMasterOrder() {
+        const orderMap = { direct: 1, mineure: 2, passerelle: 3 };
+        const sorted = [...this.mastersAnalysisRaw].sort((a, b) => {
+          if (orderMap[a.statusCategory] !== orderMap[b.statusCategory]) {
+            return orderMap[a.statusCategory] - orderMap[b.statusCategory];
+          }
+          return b.totalEcts - a.totalEcts;
+        });
+        this.masterOrder = sorted.map(m => m.id);
+      },
+
+      // Données en direct pour chaque Master (sans réordonner)
+      get mastersAnalysisRaw() {
         const sel = this.listOfSelected;
         const res = [];
 
@@ -1231,14 +1246,24 @@ def build():
           });
         }
 
-        // Tri : direct en premier, puis mineure, puis passerelle, puis par crédits décroissants
-        const order = { direct: 1, mineure: 2, passerelle: 3 };
-        return res.sort((a, b) => {
-          if (order[a.statusCategory] !== order[b.statusCategory]) {
-            return order[a.statusCategory] - order[b.statusCategory];
-          }
-          return b.totalEcts - a.totalEcts;
-        });
+        return res;
+      },
+
+      // Liste des Masters : respecte strictement masterOrder afin de ne pas faire sauter l'interface en section 3
+      get mastersAnalysis() {
+        const raw = this.mastersAnalysisRaw;
+        if (!this.masterOrder || this.masterOrder.length !== raw.length) {
+          const orderMap = { direct: 1, mineure: 2, passerelle: 3 };
+          return [...raw].sort((a, b) => {
+            if (orderMap[a.statusCategory] !== orderMap[b.statusCategory]) {
+              return orderMap[a.statusCategory] - orderMap[b.statusCategory];
+            }
+            return b.totalEcts - a.totalEcts;
+          });
+        }
+        const dict = {};
+        for (const item of raw) dict[item.id] = item;
+        return this.masterOrder.map(id => dict[id]).filter(Boolean);
       },
 
       get filteredMasters() {
@@ -1443,7 +1468,11 @@ def build():
           this.updateEcts();
           this.saveStorage();
         });
-        this.$watch('phase', () => this.saveStorage());
+        this.$watch('phase', () => {
+          this.refreshMasterOrder();
+          this.saveStorage();
+        });
+        this.refreshMasterOrder();
 """
     src = src.replace("this.$watch('selected', () => this.updateEcts());", restore_hook, 1)
 
