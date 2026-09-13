@@ -1,0 +1,970 @@
+<!-- Copyright 2025 Louis Delhez, All rights reserved. -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
+  <title>Horaire - ABICIV0099</title>
+  <script>
+    const code = "ABICIV0099";
+    window.dataPromise = fetch('../data/' + code + '.json', { cache: "no-cache" })
+      .then(res => {
+        if (!res.ok) throw new Error("HTTP error " + res.status);
+        return res.json();
+      });
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    /* source: https://code.getmdl.io/1.3.0/material.indigo-pink.min.css */
+    html{color:rgba(0,0,0,.87)}::-moz-selection{background:#b3d4fc;text-shadow:none}::selection{background:#b3d4fc;text-shadow:none}@media print{*,:after,:before,:first-letter{background:0 0!important;color:#000!important;box-shadow:none!important}a,a:visited{text-decoration:underline}a[href]:after{content:" (" attr(href) ")"}a[href^="#"]:after,a[href^="javascript:"]:after{content:""}tr{page-break-inside:avoid}h2,h3{orphans:3;widows:3}h2,h3{page-break-after:avoid}}.mdl-checkbox,.mdl-item,a{-webkit-tap-highlight-color:transparent;-webkit-tap-highlight-color:rgba(255,255,255,0)}html{width:100%;height:100%;-ms-touch-action:manipulation;touch-action:manipulation}body{width:100%;min-height:100%}[hidden]{display:none!important}body,html{font-size:14px;font-weight:400;line-height:20px}h1,h2,h3,h4,h5,h6{padding:0}h1{font-size:56px;line-height:1.35;letter-spacing:-.02em;margin:24px 0}h1,h2{font-weight:400}h2{font-size:45px;line-height:48px}h2,h3{margin:24px 0}h3{font-size:34px;line-height:40px}h3,h4{font-weight:400}h4{font-size:24px;line-height:32px;-moz-osx-font-smoothing:grayscale;margin:24px 0 16px}h5{font-size:20px;font-weight:500;line-height:1;letter-spacing:.02em}h5,h6{margin:24px 0 16px}h6{font-size:16px;letter-spacing:.04em}h6{font-weight:400;line-height:24px}body{margin:0}
+  </style>
+  <style>
+    :root {
+      --c-faculty: #f07f3c;
+      --c-faculty-accent: #00707f;
+      --c-faculty-accent-light: #5fa4b0;
+      --c-faculty-light: #f8aa00;
+    }
+    html, body {
+      font-family: "Arimo", "Arial", "Helvetica", sans-serif; 
+    }
+    button {
+      all: unset;
+      cursor: pointer;
+    }
+    #check {
+      width: 50%;
+      margin: auto;
+      padding-bottom: 2em;
+    }
+    #check .super {
+      font-size: 180%;
+      font-weight: bold;
+      letter-spacing: -.025em;
+      margin-top: 1.4em;
+      margin-bottom: .3em;
+      border-bottom: 1px solid #bbb;
+    }
+    #check .super span {
+      display: inline-block;
+    }
+    #check table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #141414;
+    }
+    #check .title {
+      width: 100%;
+    }
+    #check .code {
+      font-family: monospace;
+      white-space: nowrap;
+      padding: 0 0.9em 0 0.9em;
+      font-size: smaller;
+    }
+    #check .unsafe:not(.bad) {
+      color: #8a8a8a;
+    }
+    #check .unsafe:not(.bad) input {
+      opacity: 0.9;
+    }
+    #check .unsafe.bad {
+      color: #F51400;
+    }
+    #check .quadri {
+      white-space: nowrap;
+      padding: 0 1em 0 1em;
+      letter-spacing: 0.5px;
+      font-size: smaller;
+    }
+    #check label {
+      display: inline-flex;
+      width: 100%;
+      padding: 2px 0 2px 0;
+    }
+    #check .checkbox {
+      padding-left: 0.3em;
+    }
+    #check .ects {
+      padding-right: 1em;
+      font-family: monospace;
+    }
+    #check h4 {
+      font-size: large;
+      margin-bottom: 0.3em;
+    }
+    #check h5 {
+      font-size: 1em;
+      font-variant: small-caps;
+      margin-top: 1em;
+      margin-bottom: 0.7em;
+    }
+    #check tr:nth-of-type(odd) {
+      background: #d0d0d0;
+    }
+    #footer {
+      display: flex;
+      flex-flow: column;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: auto;
+    }
+    #check::after, #agenda::before {
+      content: ' ';
+      display: block;
+      margin-top: 2em;
+      padding: 12px 0 12px;
+      font-size: 1.1em;
+    }
+    #agenda::before {
+      margin-bottom: 1em !important;
+    }
+    #agenda {
+      display: none;
+      padding-bottom: 1em;
+    }
+    .ok #agenda {
+      display: block;
+    }
+    #band {
+      background-color: #333;
+      position: relative;
+      display: block;
+      color: white;
+      font-size: 1.1em;
+      height: 3.1em;
+    }
+    .mid {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      width: 50%;
+      margin: auto;
+    }
+    .mid #n {
+      flex: 1;
+      order: 1;
+    }
+    .mid #b {
+      order: 2;
+    }
+    .mid #cr {
+      flex: 1;
+      text-align: right;
+      order: 3;
+    }
+    #cr .num {
+      color: #FF6C40;
+      font-weight: 500;
+      font-size: 1.1em;
+    }
+    #cr .q {
+      vertical-align: super;
+      line-height: 0;
+      font-size: .8em;
+      margin-left: .25em;
+    }
+    #voir {
+      font-size: small;
+      gap: .3em;
+      padding: 0 .7em;
+      background: none;
+      background-color: #444;
+      border: 1px solid #555;
+    }
+    #voir:hover {
+      background-color: #555;
+    }
+    .ok #footer {
+      bottom: auto;
+      top: 0;
+    }
+    .ok #check {
+      display: none;
+    }
+    #hor {
+      margin: auto;
+      width: 90%;
+    }
+    #hor .table {
+      display: grid;
+      grid-template-columns: 3.5em repeat(5, 1fr);
+      grid-template-rows: max-content repeat(2, min-content);
+      grid-auto-flow: column;
+      margin-bottom: 4em;
+      margin-top: .2em;
+    }
+    #hor .day, #hor .halfdays {
+      display: contents;
+    }
+    #hor .quadri, #hor .day h5 {
+      font-size: 100%;
+      font-weight: bold;
+      margin: 0;
+      padding: .7em .6em;
+      display: table-cell;
+      line-height: initial;
+      letter-spacing: initial;
+      border-bottom: 1px solid #333;
+    }
+    #hor .day:not(:last-of-type) h5 {
+      border-right: 1px solid #aaa;
+    }
+    #hor .halfday:first-of-type, #hor .apm:first-of-type {
+      border-bottom: 1px solid #aaa;
+    }
+    #hor .day:not(:last-of-type) .halfday {
+      border-right: 1px solid #aaa;
+    }
+    #hor .apm, #hor .quadri {
+      border-right: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #hor .halfday {
+      padding: 2em 1em 2em 1em;
+    }
+    #hor .code {
+      font-family: monospace;
+    }
+    #hor .code::after {
+      content: ':';
+      margin-left: 1px;
+      margin-right: 3px;
+    }
+    #hor .title {
+      font-style: italic;
+      font-family: "Arial", "Helvetica", sans-serif;
+    }
+    #hor .location {
+      padding-top: 5px;
+    }
+    #hor .event:not(:last-of-type)::after {
+      border-bottom: 1px dotted #ccc;
+      width: 90%;
+      margin: auto;
+      content: '';
+      display: block;
+      margin-top: 1.3em;
+      margin-bottom: 1.3em;
+    }
+    #hor .event.bad .time {
+      color: #f44336;
+      font-weight: bold;
+    }
+    #hor .bad .time::after {
+      content: '[conflit]';
+      margin-left: 0.6em;
+    }
+    #hor .page {
+      break-after: page;
+    }
+    #hor .page:last-of-type {
+      break-after: auto;
+    }
+    .cr_print {
+      display: none;
+    }
+    .actions {
+      text-align: right;
+      font-size: small;
+      color: #555;
+    }
+    #check .actions {
+      float: right;
+      display: inline-flex;
+      gap: .5em;
+    }
+    .actions button {
+      cursor: pointer;
+      user-select: none;
+      display: inline-flex;
+      place-items: center;
+      gap: .2em;
+      height: 2em;
+      padding: 0 .6em;
+      border: none;
+      border-radius: .5em;
+      color: white;
+      background-color: var(--c-faculty);
+    }
+    .actions button.alt {
+      background-color: var(--c-faculty-accent)
+    }
+    .actions button:hover {
+      background-color: var(--c-faculty-light);
+    }
+    .actions button.alt:hover {
+      background-color: var(--c-faculty-accent-light);
+    }
+    .actions button:active {
+      opacity: .9;
+    }
+    .actions button svg {
+      height: 1.3em;
+      width: 1.3em;
+    }
+    #popup_container {
+      position: fixed;
+      z-index: 101;
+      margin: 0;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0,0,0,.2);
+    }
+    .popup {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background-color: #fff;
+      border-radius: .2em;
+      padding: 2em 2em;
+      padding-bottom: 1em;
+      width: 35em;
+      max-width: calc(100% - 6em);
+      box-shadow: 0px 0px 5em rgba(0,0,0,.2); 
+      font-size: 105%;
+    }
+    .popup h4 {
+      font-size: larger;
+      margin-top: 0;
+    }
+    .popup .cross {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: .4em;
+      color: #ddd;
+      padding: .2em;
+      width: 1.7em;
+      height: 1.7em;
+      cursor: pointer;
+      border-radius: .2em;
+    }
+    .popup .cross:hover {
+      color: #f14e4bff !important;
+    }
+    .popup .clickable:hover  {
+      background-color: #f4f4f4;
+      color: #222;
+    }
+    .popup .clickable:active {
+      background-color: #e4e4e4;
+    }
+    .popup .link {
+      margin: 2em;
+      margin-bottom: 1.9em;
+      text-align: center;
+      overflow-wrap: anywhere;
+      padding: .4em;
+      font-family: monospace;
+      font-weight: bold;
+      font-size: initial;
+    }
+    .popup .link .loading {
+      opacity: .5;
+    }
+    .popup .link .error {
+      color: #e2473cff;
+    }
+    .popup .share_icons {
+      display: flex;
+      width: 28em;
+      max-width: 100%;
+      gap: 2%;
+      justify-content: space-between;
+    }
+    .popup .share_icons svg {
+      width: 1.9em;
+      height: 1.9em;
+      color: #444;
+    }
+    .popup .share_icons > div {
+      padding: .8em;
+      padding-bottom: 0.6em;
+      padding-top: .9em;
+      border-radius: .3em;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      color: #333;
+    }
+    .popup .share_icons > div span {
+      margin-top: .6em;
+      font-size: smaller;
+    }
+    .popup .disable {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    @media print {
+      @page {
+        size: landscape;
+      }
+      #check, #band {
+        display: none;
+      }
+      #hor {
+        overflow: visible;
+        font-size: 75%;
+        width: 100%;
+      }
+      #hor .table {
+        margin-bottom: 1em;
+      }
+      #hor .actions { 
+        display: none;
+      }
+      #footer {
+        display: none;
+      }
+      #agenda {
+        display: block !important;
+      }
+      #agenda::before {
+        display: none;
+      }
+      #hor .code::after {
+        display: none;
+      }
+      #hor .code {
+        display: block;
+        line-height: 1.4;
+      }
+      #hor .prof {
+        display: none;
+      }
+      #hor .time {
+        font-weight: bold;
+      }
+      #hor .cr_print {
+        display: block;
+        text-align: right;
+        font-size: 100%;
+      }
+      #popup_container {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 800px) {
+      #check, .mid {
+        width: auto;
+        margin: 0em .6em;
+      }
+      .mid {
+        margin: 0em 1.2em;
+      }
+      #check .actions {
+        display: block;
+        float: none;
+        margin-bottom: -.8em;
+      }
+      #band .actions button svg {
+        display: none;
+      }
+      #hor {
+        width: auto;
+        padding: 0 1em 5em 0.5em;
+        box-sizing: border-box;
+      }
+      #hor .table {
+        display: block;
+      }
+      #hor .table.empty::after {
+        content: '- Aucun cours sélectionné.';
+        display: block;
+        margin-top: .5em;
+        margin-left: .2em;
+      }
+      #hor .quadri {
+        font-size: x-large;
+        font-weight: normal;
+        display: block;
+        padding: 0;
+      }
+      #hor .apm {
+        display: none;
+      }
+      #hor .halfday {
+        display: block;
+        padding: 0;
+      }
+      #hor .event {
+        margin-top: 1.5em;
+      }
+      #hor .event::after {
+        display: none !important;
+      }
+      #hor .halfdays {
+        display: block;
+        border-left: 1px solid #aaa;
+        padding-left: 1em;
+        padding-right: 2em;
+      }
+      #hor .day.empty {
+        display: none;
+      }
+      #hor .day h5 {
+        display: block;
+        font-size: 1.4em;
+        font-weight: normal;
+        padding: 0;
+        margin: 0;
+        margin-top: 1.2em;
+        margin-bottom: 1em;
+      }
+      #hor .quadri, #hor .day h5, #hor .halfday {
+        border: none !important;
+      }
+      #hor .time {
+        font-weight: bold;
+      }
+      .mid #n {
+        display: none;
+      }
+      .mid #cr {
+        text-align: left;
+        order: 1;
+      }
+    }
+    @media screen and (max-width: 1200px) and (min-width: 800px) {
+      #check, .mid {
+        width: 80%;
+        margin: auto;
+      }
+      #hor {
+        width: 98%;
+      }
+      #hor .code::after {
+        display: none;
+      }
+      #hor .code {
+        display: block;
+        line-height: 1.4;
+      }
+    }
+    [x-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" x-data="app">
+    <template x-if="share.show">
+      <div id="popup_container" x-data="{ noneSelected: (numSelected == 0), copyState: false }" @click="share.show = false">
+        <div class="popup" @click.stop>
+          <svg class="cross clickable" fill="currentColor" @click="share.show = false"><use href="../assets/icons.svg#x-mark"/></svg>
+          <h4>Partage de l'horaire</h4>
+          <div class="expl" x-text="noneSelected ?
+            'Aucun cours sélectionné. Après avoir sélectionné un ensemble de cours, vous trouverez ici un lien vous permettant de partager votre sélection.' :
+            'Voici un lien vous permettant d\'enregistrer votre sélection de cours et de la partager facilement :'">
+          </div>
+          <div class="link">
+            <span x-show="noneSelected" x-text="share.prot + '//...'" class="disable"></span>
+            <span x-show="!noneSelected" x-init="noneSelected || share.url || generateUrl()">
+              <span x-show="share.loading" class="loading">génération du lien en cours...</span>
+              <span x-show="!share.loading && share.url" x-text="share.url"></span>
+              <span x-show="!share.loading && !share.url" class="error">-- échec de la génération du lien --</span>
+            </span>
+          </div>
+          <div class="share_icons" :class="{ disable: (numSelected == 0) || share.loading || !share.url }">
+            <div class="clickable" :style="{'pointer-events': copyState ? 'none' : 'default'}" @click="copyUrl">
+              <svg fill="currentColor"><use href="../assets/icons.svg#paper-clip"/></svg>
+              <span x-text="copyState ? (copyState == 'copied' ? 'Copié !' : 'Erreur !') : 'Copier le lien'"></span>
+            </div>
+            <div class="clickable" @click="sendEmail">
+              <svg fill="currentColor"><use href="../assets/icons.svg#envelope"/></svg>
+              <span>Envoyer par email</span>
+            </div>
+            <div class="clickable" @click="window.print()">
+              <svg fill="currentColor"><use href="../assets/icons.svg#printer"/></svg>
+              <span>Imprimer / PDF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+    <div id="root" :class="{ ok: showAgenda }">
+    <template x-if="error"><span x-text="error"></span></template>
+    <template x-if="!error && layout.content">
+    <div id="check">
+      <h3 class="super" x-html="addBlocks(layout.h1)"></h3>
+      <span class="actions">
+        <button class="alt" @click="resetSelection();window.location.hash=''" title="cliquez ici pour effacer la sélection">
+          <svg fill="currentColor"><use href="../assets/icons.svg#trash"/></svg><span>Tout effacer</span>
+        </button>
+        <button @click="share.show = true" title="cliquez ici pour générer un lien de partage">
+          <svg fill="currentColor"><use href="../assets/icons.svg#arrow-up-on-square"/></svg><span>Partager</span>
+        </button>
+      </span>
+      <template  x-for="opt in layout.content">
+      <div class="option">
+        <h4 x-text="opt.h2"></h4>
+        <template x-for="bloc in opt.content">
+        <div class="bloc">
+          <h5 x-text="bloc.h3"></h5>
+          <table>
+            <template x-for="longcode in bloc.list">
+            <tr x-id="['check']" x-data="{ shortcode: longcode.substring(0,10), c: courses[longcode.substring(0,10)][longcode] }" :class="{ bad: selected[shortcode], unsafe: conflict[shortcode].some(it => selected[it]) }">
+              <td class="checkbox"><input :id="$id('check')" @input="updateAgenda" :disabled="loading" x-model="selected[shortcode]" :value="shortcode" type="checkbox"/></td>
+              <td class="code"><label :for="$id('check')" x-text="longcode"></label></td>
+              <td class="title"><label :for="$id('check')" x-text="c.title"></label></td>
+              <td class="quadri"><label :for="$id('check')" x-text="c.quadri ? 'Q'+c.quadri : ''"></label></td>
+              <td class="ects"><label :for="$id('check')" x-text="c.ects"></label></td>
+            </tr>
+            </template>
+          </table>
+        </div>
+        </template>
+      </div>
+      </template>
+    </div>
+    </template>
+    <div id="footer">
+      <div id="band">
+        <div class="mid">
+          <span id="n" x-text="numSelectedStr">Aucun cours sélectionné</span>
+          <span id="cr">
+            <span x-show="ects[1] || ects[2]" x-cloak><span class="num" x-text="ects[1]"></span><span class="q">(Q1)</span> + <span class="num" x-text="ects[2]"></span><span class="q">(Q2)</span> = </span>
+            <span class="num" x-text="ects[1] + ects[2]">0</span> crédits
+          </span>
+          <div id="b" class="actions">
+            <button id="voir" @click="toggleAgenda" :title="showAgenda ? 'Cliquez ici pour retourner à la liste des cours' : 'Cliquez ici pour afficher l\'horaire'">
+              <svg fill="currentColor" x-show="!showAgenda"><use href="../assets/icons.svg#calendar-days"/></svg>
+              <svg fill="currentColor" x-show="showAgenda" x-cloak><use href="../assets/icons.svg#list-bullet"/></svg>
+              <span x-text="showAgenda ? 'Choisir les cours' : 'Voir l\'horaire'">Voir l'horaire</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="agenda">
+      <div id="hor">
+        <div class="actions">
+          <button @click="share.show = true" title="cliquez ici pour générer un lien de partage">
+            <svg fill="currentColor"><use href="../assets/icons.svg#arrow-up-on-square"/></svg><span>Partager</span>
+          </button>
+        </div>
+        <template x-for="q in 2">
+        <div class="page">
+          <div class="table" :class="{empty: !agenda[q].some(it => it.length)}">
+            <h4 class="quadri" x-text="'Q'+q"></h4>
+            <div class="apm">AM</div>
+            <div class="apm">PM</div>
+            <template x-for="d in [0,1,2,3,4]">
+              <div class="day" :class="{empty: !agenda[q][d].length}">
+                <h5 x-text="['Lundi','Mardi','Mercredi','Jeudi','Vendredi'][d]"></h5>
+                <div class="halfdays">
+                <template x-for="apm in ['AM','PM']">
+                  <div class="halfday">
+                    <template x-for="c in agenda[q][d].filter(it => (it.slot.start.h < 12) == (apm == 'AM'))">
+                      <div class="event" :class="{ bad: c.conflict }">
+                        <div class="time" x-text="slotStr(c.slot)"></div>
+                        <div class="w_title"><span class="code" x-text="c.course.code"></span><span class="title" x-text="c.course.title"></span></div>
+                        <div class="prof" x-text="c.course.prof"></div>
+                      </div>
+                    </template>
+                  </div>
+                </template>
+                </div>
+              </div>
+            </template>  
+          </div>
+          <div class="cr_print" x-text="`crédits Q${q} : ${ects[q]} / ${ects[1]+ects[2]}`"></div>
+        </div>
+        </template>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script type="module">
+    import { default as Alpine } from 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/+esm';
+
+    Alpine.data('app', () => ({
+      error: null,
+      showAgenda: false,
+      layout: {},
+      courses: {},
+      selected: {},
+      conflict: {},
+      agenda: emptyAgenda(),
+      ects: [null, 0, 0],
+      loading: !!window.location.hash,
+      share: { show: false, prot: window.location.protocol, loading: true, url: '' },
+
+      get numSelected() {
+        return Object.values(this.selected).reduce((a, item) => a + item, 0);
+      },
+      get listOfSelected() {
+        return Object.keys(this.selected).filter(k => this.selected[k]);
+      },
+      get numSelectedStr() {
+        let count = this.numSelected;
+        if (count == 0)
+          return 'Aucun cours sélectionné';
+        else if (count == 1)
+          return '1 cours sélectionné';
+        else
+          return count + ' cours sélectionnés';
+      },
+      
+      addBlocks(text) {
+        return text.split(' - ').map(c => '<span>' + c +'</span>').join(' - ');
+      },
+      resetSelection() {
+        this.selected = {};
+        this.agenda = emptyAgenda();
+      },
+      updateEcts() {
+        let acc = [null, 0, 0];
+        for (const [ shortCode, isSelected ] of Object.entries(this.selected)) {
+          if (!isSelected) continue;
+          for (const [ longCode, course ] of Object.entries(this.courses[shortCode])) {
+            let ects = (course.ects || 0);
+            acc[course.quadri] += ects;
+            if (longCode.length > 10) {
+              acc[1] -= ects / 2;
+              acc[2] -= ects / 2;
+            }
+          }
+        }
+        this.ects = acc;
+      },
+      toggleAgenda() {
+        this.showAgenda = !this.showAgenda;
+        window.scrollTo(0, 0);
+      },
+      updateAgenda(event) {
+        this.share.url = '';
+        let checked = event.target.checked;
+        let code = event.target.value;
+        let list = this.courses[code];
+        Object.values(list).forEach(course => {
+          Object.values(course.slots).forEach(slot => {
+            if (checked) this.insert(course, slot);
+            else this.remove(course, slot);
+          });
+        });
+      },
+      insert(course, slot) {
+        let list = this.agenda[course.quadri][slot.day];
+        let elem = { course: course, slot: slot, confict: false };
+        let i = 0;
+        while (i < list.length && timeLessThan(list[i].slot.start, slot.start)) i++;
+        list.splice(i, 0, elem);
+        if (elem.slot.check)
+          this.updateConflicts(list);
+      },
+      remove(course, slot) {
+        let list = this.agenda[course.quadri][slot.day];
+        let i = 0;
+        let any_check = false;
+        while (i < list.length) {
+          if (list[i].course.code.substring(0,10) == course.code.substring(0,10)) {
+            if (list[i].conflict) any_check = true;
+            list.splice(i, 1);
+          }
+          else i++;
+        }
+        if (any_check)
+          this.updateConflicts(list);
+      },
+      updateConflicts(list) {
+        for (let fst = 0; fst < list.length; fst++) list[fst].conflict = false;
+        for (let snd = 0; snd < list.length; snd++) {
+          if (!list[snd].slot.check) continue;
+          for (let fst = 0; fst < snd; fst++) {
+            if (!list[fst].slot.check) continue;
+            if (!timeLessThan(list[fst].slot.end, list[snd].slot.start)) {
+              list[fst].conflict = true;
+              list[snd].conflict = true;
+            }  
+          }
+        }
+      },
+      slotStr(slot) {
+        return timetoString(slot.start) + ' - ' + timetoString(slot.end);
+      },
+      sendEmail() {
+        let subject = this.layout.h1;
+        let body = writeEmail(this.courses, this.listOfSelected, this.share.url);
+        let uri = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        window.open(uri);
+      },
+      async loadFragment() {
+        const hash = window.location.hash;
+        if (!hash.startsWith('#b=')) return;
+        const data = hash.substring(3).split('=')[0];
+        let decoder, selected;
+        try {
+          decoder = await import('../js/decoder.min.js');
+        }
+        catch (e) {
+          console.error(e);
+          alert("Une erreur est survenue lors du chargement de l'horaire. Veuillez réessayer plus tard.");
+          return;
+        }
+        try {
+          selected = decoder.decode(data);
+        }
+        catch (e) {
+          console.error(e);
+          alert("Une erreur est survenue lors du chargement de l'horaire. L'URL semble être invalide.");
+          return;
+        }
+        for (const code of selected) {
+          if (!(code in this.courses)) {
+            alert("Impossible de charger l'horaire. Le cours '" + code + "' n'existe pas.");
+            this.resetSelection();
+            return;
+          }
+          this.selected[code] = true;
+          this.updateAgenda({target: {value: code, checked: true}});
+        }
+        this.showAgenda = true;
+      },
+      async generateUrl() {
+        this.share.loading = true;
+        try {
+          const encoder = await import('../js/encoder.min.js');
+          const data = encoder.encode(this.listOfSelected);
+          this.share.url = this.share.prot + '//' + window.location.hostname + window.location.pathname + '#b=' + data;
+        }
+        catch (err) {
+          console.error(err);
+          this.share.url = '';
+        }
+        this.share.loading = false;
+      },
+      async copyUrl() {
+        let url = this.share.url;
+        try {
+          await navigator.clipboard.writeText(url);
+          this.copyState = 'copied';
+        } catch (error) {
+          this.copyState = 'fail';
+        }
+        setTimeout(() => {this.copyState = false}, 1000);
+      },
+      async init() {
+        try {
+          let json = await window.dataPromise;
+          this.courses = json.courses;
+          this.conflict = computeAllConflicts(json.courses);
+          this.layout = json.layout;
+        }
+        catch (err) {
+          console.error(err);
+          this.error = 'Une erreur est survenue.';
+        }
+        this.$watch('selected', () => this.updateEcts());
+        await this.loadFragment();
+        this.loading = false;
+        window.onhashchange = (async () => {
+          this.loading = true;
+          this.resetSelection();
+          this.showAgenda = false;
+          this.share.show = false;
+          await this.loadFragment();
+          this.loading = false;
+        });
+      },
+
+    }));
+    Alpine.start();
+
+    function computeAllConflicts(courses) {
+      let allStart = emptyAgenda(), allEnd = emptyAgenda();
+      let conflict = {};
+      for (const [code, list] of Object.entries(courses)) {
+        for (const course of Object.values(list)) {
+          course.slots.filter(s => s.check).forEach((s, idx) => {
+            allStart[course.quadri][s.day].push({ code: code, val: timeToInt(s.start) });
+            allEnd[course.quadri][s.day].push({ code: code, val: timeToInt(s.end) });
+          });
+        }
+        conflict[code] = new Set();
+      }
+      for (let q = 1; q <= 2; q++) {
+        for (let d = 0; d < 5; d++) {
+          let start = allStart[q][d], end = allEnd[q][d];
+          start.sort((a, b) => (a.val - b.val));
+          end.sort((a, b) => (a.val - b.val));
+          let open = new Map();
+          let s = 0, e = 0;
+          while (s < start.length) {
+            if (e < end.length && end[e].val <= start[s].val) {
+              let code = end[e].code;
+              let count = open.get(code);
+              if (count == 1) open.delete(code);
+              else open.set(code, count - 1);
+              e++;
+            }
+            else {
+              let code = start[s].code;
+              for (const openCode of open.keys()) {                
+                if (code == openCode) continue;
+                conflict[code].add(openCode);
+                conflict[openCode].add(code);
+              }
+              let count = open.get(code);
+              if (!count) open.set(code, 1);
+              else open.set(code, count + 1);
+              s++;
+            }
+          }
+        }
+      }
+      Object.entries(conflict).forEach(([k, v]) => conflict[k] = [...v]);
+      return conflict;
+    }
+    function emptyAgenda() {
+      return [null, [[],[],[],[],[],[],[]], [[],[],[],[],[],[],[]]];
+    }
+    function timetoString(t) {
+      return t.h.toString().padStart(2,'0') + 'h' + t.m.toString().padStart(2,'0');
+    }
+    function timeToInt(t) {
+      return t.h * 60 + t.m;
+    }
+    function timeLessThan(t1, t2) {
+      return timeToInt(t1) <= timeToInt(t2);
+    }
+    function writeEmail(courses, selected, url) {
+      const withLong = selected.sort().map(c => Object.values(courses[c])).flat();
+      const listQuadri = (q) => withLong.filter(c => c.quadri == q).map(c => `- ${c.code.substring(0,10)} : ${c.title}`).join('\n');
+      const body =
+`Bonjour,
+
+Je partage avec vous une sélection de cours élaborée grâce à l'outil interactif de la Faculté des Sciences Appliquées.
+
+Liste des cours du Q1 :
+${ listQuadri(1) || ' - vide' }
+
+Liste des cours du Q2 :
+${ listQuadri(2) || ' - vide' }
+
+Vous pouvez consulter cette proposition et apporter vos propres ajustements avec le lien suivant : ${ url }
+
+Cordialement,
+
+
+-- Cet email a été généré automatiquement par l'outil interactif.
+`
+      return body;
+    }
+  </script>
+</body>
+</html>

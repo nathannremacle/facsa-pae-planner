@@ -1,0 +1,1379 @@
+{
+ "CHIM9272-2": {
+  "title": "Chimie 1",
+  "bloc": "B1",
+  "orga": "Q1",
+  "credits": "4",
+  "pre": [],
+  "coreq": []
+ },
+ "CHIM9273-1": {
+  "title": "Chimie 2",
+  "bloc": "B1",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "CHIM9272-2",
+    "title": "Chimie 1"
+   }
+  ]
+ },
+ "ECON0323-1": {
+  "title": "Eléments d'économie politique",
+  "bloc": "B1",
+  "orga": "Q1",
+  "credits": "3",
+  "pre": [],
+  "coreq": []
+ },
+ "INFO2009-2": {
+  "title": "Introduction à l'informatique",
+  "bloc": "B1",
+  "orga": "Q1",
+  "credits": "4",
+  "pre": [],
+  "coreq": []
+ },
+ "INFO0061-4": {
+  "title": "Organisation des ordinateurs",
+  "bloc": "B1",
+  "orga": "Q2",
+  "credits": "3",
+  "pre": [],
+  "coreq": []
+ },
+ "LANG0038-2": {
+  "title": "Anglais",
+  "bloc": "B1",
+  "orga": "TA",
+  "credits": "3",
+  "pre": [],
+  "coreq": []
+ },
+ "MATH0001-2": {
+  "title": "Communication graphique",
+  "bloc": "B1",
+  "orga": "Q1",
+  "credits": "3",
+  "pre": [],
+  "coreq": []
+ },
+ "MATH0002-4": {
+  "title": "Analyse mathématique 1, Théorie et applications",
+  "bloc": "B1",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "MATH0502-1": {
+  "title": "Analyse mathématique 2",
+  "bloc": "B1",
+  "orga": "Q2",
+  "credits": "6",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "MATH0002-4",
+    "title": "Analyse mathématique 1"
+   }
+  ]
+ },
+ "MATH0013-1": {
+  "title": "Algèbre",
+  "bloc": "B1",
+  "orga": "Q1",
+  "credits": "4",
+  "pre": [],
+  "coreq": []
+ },
+ "PHYS2020-1": {
+  "title": "Physique 1 : Mécanique",
+  "bloc": "B1",
+  "orga": "Q1",
+  "credits": "4",
+  "pre": [],
+  "coreq": []
+ },
+ "PHYS2021-1": {
+  "title": "Physique 2 : Electricité et électromagnétisme",
+  "bloc": "B1",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "PHYS2020-1",
+    "title": "Physique 1 : Mécanique"
+   }
+  ]
+ },
+ "PROJ0001-1": {
+  "title": "Introduction aux méthodes numériques et projet",
+  "bloc": "B1",
+  "orga": "Q2",
+  "credits": "4",
+  "pre": [],
+  "coreq": []
+ },
+ "INGE0009-1": {
+  "title": "Introduction aux métiers de l'ingénieur",
+  "bloc": "B1",
+  "orga": "TA",
+  "credits": "1",
+  "pre": [],
+  "coreq": []
+ },
+ "MATH2032-1": {
+  "title": "Introduction aux mathématiques discrètes",
+  "bloc": "B1",
+  "orga": "Q2",
+  "credits": "2",
+  "pre": [],
+  "coreq": []
+ },
+ "GENV0001-2": {
+  "title": "Génie de l'environnement",
+  "bloc": "B1",
+  "orga": "Q2",
+  "credits": "4",
+  "pre": [],
+  "coreq": []
+ },
+ "CHIM0286-1": {
+  "title": "Eléments de thermodynamique",
+  "bloc": "B2",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "CHIM9273-1",
+    "title": "Chimie 2"
+   }
+  ],
+  "coreq": []
+ },
+ "LANG0039-3": {
+  "title": "Anglais 2",
+  "bloc": "B2",
+  "orga": "TA",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "LANG0038-2",
+    "title": "Anglais"
+   }
+  ],
+  "coreq": []
+ },
+ "MATH0006-3": {
+  "title": "Introduction to numerical analysis",
+  "bloc": "B2",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "MATH0013-1",
+    "title": "Algèbre"
+   }
+  ],
+  "coreq": []
+ },
+ "MECA0001-2": {
+  "title": "Mécanique des matériaux",
+  "bloc": "B2",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "MECA0003-2": {
+  "title": "Mécanique rationnelle",
+  "bloc": "B2",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "MATH0002-4",
+    "title": "Analyse mathématique 1"
+   },
+   {
+    "code": "PHYS2020-1",
+    "title": "Physique 1 : Mécanique"
+   }
+  ],
+  "coreq": []
+ },
+ "MECA0011-2": {
+  "title": "Eléments de mécanique des fluides",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "4",
+  "pre": [
+   {
+    "code": "PHYS2020-1",
+    "title": "Physique 1 : Mécanique"
+   }
+  ],
+  "coreq": [
+   {
+    "code": "MECA0001-2",
+    "title": "Mécanique des matériaux"
+   },
+   {
+    "code": "MATH0502-1",
+    "title": "Analyse mathématique 2"
+   }
+  ]
+ },
+ "PHYS2022-2": {
+  "title": "Physique 3 : Ondes et quanta",
+  "bloc": "B2",
+  "orga": "Q1",
+  "credits": "3",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "PHYS2021-1",
+    "title": "Physique 2 : Electricité et électromagnétisme"
+   }
+  ]
+ },
+ "MATH0062-1": {
+  "title": "Eléments du calcul des probabilités",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "3",
+  "pre": [],
+  "coreq": []
+ },
+ "INFO0952-1": {
+  "title": "Complément d'informatique",
+  "bloc": "B2",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "INFO2009-2",
+    "title": "Introduction à l'informatique"
+   }
+  ],
+  "coreq": []
+ },
+ "SYST0002-2": {
+  "title": "Introduction aux signaux et systèmes",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "MATH0002-4",
+    "title": "Analyse mathématique 1"
+   }
+  ],
+  "coreq": []
+ },
+ "DROI0724-1": {
+  "title": "Droit et activités de l'ingénieur",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "2",
+  "pre": [],
+  "coreq": []
+ },
+ "GENV0002-1": {
+  "title": "Energie et développement durable",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "2",
+  "pre": [],
+  "coreq": []
+ },
+ "MATH0487-2": {
+  "title": "Eléments de statistiques",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "3",
+  "pre": [
+   {
+    "code": "MATH0062-1",
+    "title": "Eléments du calcul des probabilités"
+   }
+  ],
+  "coreq": []
+ },
+ "GENV0003-1": {
+  "title": "Matières premières, conception durable et économie circulaire",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "3",
+  "pre": [],
+  "coreq": []
+ },
+ "MATH0504-1": {
+  "title": "Mathématiques appliquées",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "MATH0502-1",
+    "title": "Analyse mathématique 2"
+   },
+   {
+    "code": "MATH0002-4",
+    "title": "Analyse mathématique 1"
+   },
+   {
+    "code": "MATH0013-1",
+    "title": "Algèbre"
+   }
+  ],
+  "coreq": []
+ },
+ "CHIM9322-1": {
+  "title": "Procédés de chimie industrielle",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "CHIM9273-1",
+    "title": "Chimie 2"
+   },
+   {
+    "code": "CHIM9272-2",
+    "title": "Chimie 1"
+   }
+  ],
+  "coreq": []
+ },
+ "CHIM0604-2": {
+  "title": "Chimie et matériaux organiques",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "CHIM9272-2",
+    "title": "Chimie 1"
+   },
+   {
+    "code": "CHIM9273-1",
+    "title": "Chimie 2"
+   }
+  ]
+ },
+ "CHIM0009-3": {
+  "title": "Thermodynamique chimique appliquée",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "CHIM9273-1",
+    "title": "Chimie 2"
+   },
+   {
+    "code": "CHIM9272-2",
+    "title": "Chimie 1"
+   },
+   {
+    "code": "CHIM0286-1",
+    "title": "Eléments de thermodynamique"
+   }
+  ],
+  "coreq": []
+ },
+ "CHIM0022-4": {
+  "title": "Transport phenomena",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "CHIM0286-1",
+    "title": "Eléments de thermodynamique"
+   }
+  ],
+  "coreq": [
+   {
+    "code": "MECA0011-2",
+    "title": "Eléments de mécanique des fluides"
+   }
+  ]
+ },
+ "CHIM9318-1": {
+  "title": "Matériaux inorganiques : procédés de fabrication et propriétés d'usage",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "CHIM9320-1": {
+  "title": "Introduction au génie de la réaction chimique",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "CHIM9273-1",
+    "title": "Chimie 2"
+   },
+   {
+    "code": "CHIM9272-2",
+    "title": "Chimie 1"
+   }
+  ],
+  "coreq": []
+ },
+ "CHIM9315-1": {
+  "title": "Gestion durable des combustibles : approvisionnement, synthèse et utilisation",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "CHIM9272-2",
+    "title": "Chimie 1"
+   }
+  ],
+  "coreq": []
+ },
+ "CHIM9297-1": {
+  "title": "Bachelor project",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "CHIM0009-3",
+    "title": "Thermodynamique chimique appliquée"
+   }
+  ]
+ },
+ "MECA0445-2": {
+  "title": "Heat transfer",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "MECA0012-6": {
+  "title": "Mécanique des solides",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "MATH0002-4",
+    "title": "Analyse mathématique 1"
+   },
+   {
+    "code": "MATH0013-1",
+    "title": "Algèbre"
+   },
+   {
+    "code": "PHYS2020-1",
+    "title": "Physique 1 : Mécanique"
+   },
+   {
+    "code": "MECA0001-2",
+    "title": "Mécanique des matériaux"
+   }
+  ]
+ },
+ "MECA0002-1": {
+  "title": "Thermodynamique appliquée et introduction aux machines thermiques",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "MECA0011-2",
+    "title": "Eléments de mécanique des fluides"
+   },
+   {
+    "code": "CHIM0286-1",
+    "title": "Eléments de thermodynamique"
+   }
+  ]
+ },
+ "MECA0155-2": {
+  "title": "Dynamique des systèmes mécaniques",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "MECA0003-2",
+    "title": "Mécanique rationnelle"
+   }
+  ]
+ },
+ "PHYS0904-4": {
+  "title": "Physique des matériaux",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "MECA0444-1": {
+  "title": "Conception mécanique",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "MECA0003-2",
+    "title": "Mécanique rationnelle"
+   }
+  ]
+ },
+ "MECA0025-3": {
+  "title": "Mécanique des fluides",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "MECA0036-2": {
+  "title": "Finite Element Method",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "MECA0001-2",
+    "title": "Mécanique des matériaux"
+   }
+  ]
+ },
+ "PHYS2026-2": {
+  "title": "Physique 4 : Physique microscopique (partim a : mécanique ondulatoire, partim b : introduction à la physique nucléaire)",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "PHYS2020-1",
+    "title": "Physique 1 : Mécanique"
+   },
+   {
+    "code": "PHYS2021-1",
+    "title": "Physique 2 : Electricité et électromagnétisme"
+   },
+   {
+    "code": "PHYS2022-2",
+    "title": "Physique 3 : Ondes et quanta"
+   }
+  ]
+ },
+ "PHYS0211-3": {
+  "title": "Mécanique quantique",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "MATH0013-1",
+    "title": "Algèbre"
+   },
+   {
+    "code": "PHYS2026-2",
+    "title": "Physique 4 : Physique microscopique (partim a : mécanique ondulatoire, partim b : introduction à la physique nucléaire)"
+   }
+  ],
+  "coreq": [
+   {
+    "code": "MATH0062-1",
+    "title": "Eléments du calcul des probabilités"
+   }
+  ]
+ },
+ "ELEN0076-1": {
+  "title": "Electromagnetism",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "PHYS2021-1",
+    "title": "Physique 2 : Electricité et électromagnétisme"
+   }
+  ],
+  "coreq": []
+ },
+ "PHYS0055-1": {
+  "title": "Introduction à la physique de la matière condensée",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "PHYS2021-1",
+    "title": "Physique 2 : Electricité et électromagnétisme"
+   }
+  ],
+  "coreq": [
+   {
+    "code": "PHYS2022-2",
+    "title": "Physique 3 : Ondes et quanta"
+   },
+   {
+    "code": "PHYS0211-3",
+    "title": "Mécanique quantique"
+   }
+  ]
+ },
+ "SYST0020-1": {
+  "title": "Introduction to microsystems and microtechnology",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "MATH0002-4",
+    "title": "Analyse mathématique 1"
+   },
+   {
+    "code": "MECA0001-2",
+    "title": "Mécanique des matériaux"
+   },
+   {
+    "code": "MATH0502-1",
+    "title": "Analyse mathématique 2"
+   },
+   {
+    "code": "PHYS2021-1",
+    "title": "Physique 2 : Electricité et électromagnétisme"
+   }
+  ],
+  "coreq": [
+   {
+    "code": "MECA0003-2",
+    "title": "Mécanique rationnelle"
+   },
+   {
+    "code": "MECA0011-2",
+    "title": "Eléments de mécanique des fluides"
+   }
+  ]
+ },
+ "ELEC0053-2": {
+  "title": "Circuits électriques",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "PHYS2021-1",
+    "title": "Physique 2 : Electricité et électromagnétisme"
+   }
+  ]
+ },
+ "ELEN0040-1": {
+  "title": "Digital electronics",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "ELEC0052-2": {
+  "title": "Mesures électriques : fondements et applications",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "PHYS2021-1",
+    "title": "Physique 2 : Electricité et électromagnétisme"
+   },
+   {
+    "code": "ELEC0053-2",
+    "title": "Circuits électriques"
+   }
+  ],
+  "coreq": []
+ },
+ "ELEC0431-2": {
+  "title": "Electromagnetic energy conversion",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "PHYS2021-1",
+    "title": "Physique 2 : Electricité et électromagnétisme"
+   }
+  ],
+  "coreq": []
+ },
+ "SYST0022-1": {
+  "title": "Linear Systems Design",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "SYST0002-2",
+    "title": "Introduction aux signaux et systèmes"
+   }
+  ],
+  "coreq": []
+ },
+ "ELEN0075-3": {
+  "title": "Electronique analogique",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "ELEC0053-2",
+    "title": "Circuits électriques"
+   }
+  ]
+ },
+ "ELEN0008-1": {
+  "title": "Principes des télécommunications analogiques et numériques",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "ELEN0450-1": {
+  "title": "Multimedia Systems",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "INFO0902-1": {
+  "title": "Structures des données et algorithmes",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "INFO2009-2",
+    "title": "Introduction à l'informatique"
+   }
+  ]
+ },
+ "INFO0062-1": {
+  "title": "Object-oriented programming",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "INFO2009-2",
+    "title": "Introduction à l'informatique"
+   }
+  ]
+ },
+ "INFO0012-2": {
+  "title": "Computation structures",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "INFO2009-2",
+    "title": "Introduction à l'informatique"
+   },
+   {
+    "code": "INFO0061-4",
+    "title": "Organisation des ordinateurs"
+   }
+  ],
+  "coreq": []
+ },
+ "INFO9012-1": {
+  "title": "Parallel Programming",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "INFO0009-2": {
+  "title": "Bases de données (organisation générale)",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "INFO0061-4",
+    "title": "Organisation des ordinateurs"
+   },
+   {
+    "code": "INFO2009-2",
+    "title": "Introduction à l'informatique"
+   }
+  ],
+  "coreq": []
+ },
+ "INFO0054-1": {
+  "title": "Programmation fonctionnelle",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "INFO0902-1",
+    "title": "Structures des données et algorithmes"
+   }
+  ],
+  "coreq": []
+ },
+ "INFO0010-4": {
+  "title": "Introduction to computer networking",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "INFO0062-1",
+    "title": "Object-oriented programming"
+   }
+  ],
+  "coreq": []
+ },
+ "INFO8006-1": {
+  "title": "Introduction to artificial intelligence",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "INFO0952-1",
+    "title": "Complément d'informatique"
+   },
+   {
+    "code": "MATH0062-1",
+    "title": "Eléments du calcul des probabilités"
+   }
+  ],
+  "coreq": []
+ },
+ "GCIV0184-5": {
+  "title": "Matériaux de construction",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "CHIM9272-2",
+    "title": "Chimie 1"
+   },
+   {
+    "code": "CHIM9273-1",
+    "title": "Chimie 2"
+   },
+   {
+    "code": "MECA0001-2",
+    "title": "Mécanique des matériaux"
+   }
+  ]
+ },
+ "GCIV0604-3": {
+  "title": "Hydraulique",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "MECA0001-2",
+    "title": "Mécanique des matériaux"
+   },
+   {
+    "code": "MECA0011-2",
+    "title": "Eléments de mécanique des fluides"
+   }
+  ],
+  "coreq": []
+ },
+ "GCIV0603-2": {
+  "title": "Géotechnique et infrastructures",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "MECA0001-2",
+    "title": "Mécanique des matériaux"
+   },
+   {
+    "code": "MECA0011-2",
+    "title": "Eléments de mécanique des fluides"
+   }
+  ]
+ },
+ "GCIV0608-1": {
+  "title": "Introduction à l'ingénierie des constructions",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "MECA0001-2",
+    "title": "Mécanique des matériaux"
+   }
+  ],
+  "coreq": []
+ },
+ "GEOL0001-1": {
+  "title": "Géologie et géologie de l'ingénieur",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "GCIV2172-1": {
+  "title": "Calcul d'éléments métalliques",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "MECA0001-2",
+    "title": "Mécanique des matériaux"
+   }
+  ]
+ },
+ "GCIV2173-1": {
+  "title": "Béton armé",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "MECA0001-2",
+    "title": "Mécanique des matériaux"
+   }
+  ],
+  "coreq": []
+ },
+ "GEOL0021-7": {
+  "title": "Prospection géophysique",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "PHYS2021-1",
+    "title": "Physique 2 : Electricité et électromagnétisme"
+   },
+   {
+    "code": "GEOL0001-1",
+    "title": "Géologie et géologie de l'ingénieur"
+   }
+  ]
+ },
+ "GEOL0020-7": {
+  "title": "Mineral resources",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "GEOL0001-1",
+    "title": "Géologie et géologie de l'ingénieur"
+   }
+  ],
+  "coreq": []
+ },
+ "GEOL0013-5": {
+  "title": "Hydrogéologie",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "GEOL0001-1",
+    "title": "Géologie et géologie de l'ingénieur"
+   }
+  ],
+  "coreq": []
+ },
+ "GEOL1026-1": {
+  "title": "Compléments de géologie",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "CHIM9272-2",
+    "title": "Chimie 1"
+   },
+   {
+    "code": "MATH0002-4",
+    "title": "Analyse mathématique 1"
+   },
+   {
+    "code": "PHYS2020-1",
+    "title": "Physique 1 : Mécanique"
+   },
+   {
+    "code": "CHIM9273-1",
+    "title": "Chimie 2"
+   },
+   {
+    "code": "MATH0502-1",
+    "title": "Analyse mathématique 2"
+   },
+   {
+    "code": "PHYS2021-1",
+    "title": "Physique 2 : Electricité et électromagnétisme"
+   }
+  ],
+  "coreq": [
+   {
+    "code": "GEOL0001-1",
+    "title": "Géologie et géologie de l'ingénieur"
+   }
+  ]
+ },
+ "GEOL1032-1": {
+  "title": "Géoinformatique et géocommunication",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "INFO2009-2",
+    "title": "Introduction à l'informatique"
+   }
+  ],
+  "coreq": [
+   {
+    "code": "GEOL0013-5",
+    "title": "Hydrogéologie"
+   },
+   {
+    "code": "GEOL0020-7",
+    "title": "Mineral resources"
+   }
+  ]
+ },
+ "GEOL0314-1": {
+  "title": "Mineral processing I - basics",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "GEOL0020-7",
+    "title": "Mineral resources"
+   }
+  ]
+ },
+ "GBIO0025-1": {
+  "title": "Biologie générale et cellulaire",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "CHIM9272-2",
+    "title": "Chimie 1"
+   }
+  ]
+ },
+ "GBIO0026-1": {
+  "title": "Physiologie des systèmes",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "GBIO0025-1",
+    "title": "Biologie générale et cellulaire"
+   }
+  ]
+ },
+ "GBIO0002-1": {
+  "title": "Genetics and bioinformatics",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "GBIO0025-1",
+    "title": "Biologie générale et cellulaire"
+   }
+  ],
+  "coreq": []
+ },
+ "GBIO0011-1": {
+  "title": "Modélisation des systèmes biologiques",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [
+   {
+    "code": "PHYS2021-1",
+    "title": "Physique 2 : Electricité et électromagnétisme"
+   }
+  ],
+  "coreq": [
+   {
+    "code": "CHIM0286-1",
+    "title": "Eléments de thermodynamique"
+   },
+   {
+    "code": "MECA0003-2",
+    "title": "Mécanique rationnelle"
+   }
+  ]
+ },
+ "GBIO0001-1": {
+  "title": "Biophysique et biochimie",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "GBIO0021-1": {
+  "title": "Projet de laboratoire",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "GBIO0025-1",
+    "title": "Biologie générale et cellulaire"
+   },
+   {
+    "code": "GBIO0026-1",
+    "title": "Physiologie des systèmes"
+   }
+  ]
+ },
+ "GBIO0013-1": {
+  "title": "Phénomènes de transport en biologie",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "CHIM0286-1",
+    "title": "Eléments de thermodynamique"
+   },
+   {
+    "code": "MECA0011-2",
+    "title": "Eléments de mécanique des fluides"
+   }
+  ]
+ },
+ "GBIO0005-1": {
+  "title": "Introduction aux neurosciences cognitives",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "ARCH2224-1": {
+  "title": "Culture architecturale 2 - Histoire de la construction - Antiquité - XIXe siècle",
+  "bloc": "B2",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "ARCH3260-2": {
+  "title": "Ateliers d'architecture II, Partim \"Introduction\"",
+  "bloc": "B3",
+  "orga": "TA",
+  "credits": "7",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "ARCH3275-1",
+    "title": "Techniques de construction durable des bâtiments IA - éléments - Partie A"
+   }
+  ]
+ },
+ "ARCH3275-1": {
+  "title": "Techniques de construction durable des bâtiments IA - éléments - Partie A",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "MATH0461-2": {
+  "title": "Introduction to numerical optimization",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "MATH0006-3",
+    "title": "Introduction to numerical analysis"
+   }
+  ]
+ },
+ "INFO0939-1": {
+  "title": "High performance scientific computing",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "5",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "MATH0504-1",
+    "title": "Mathématiques appliquées"
+   }
+  ]
+ },
+ "MATH1222-3": {
+  "title": "Introduction aux processus stochastiques",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "DATS0002-1": {
+  "title": "Data visualization",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "LANG1957-1": {
+  "title": "Néerlandais pour l'ingénieur, partim 1",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "3",
+  "pre": [],
+  "coreq": []
+ },
+ "LANG1958-1": {
+  "title": "Allemand pour l'ingénieur, partim 1",
+  "bloc": "B3",
+  "orga": "Q1",
+  "credits": "3",
+  "pre": [],
+  "coreq": []
+ },
+ "LANG2978-1": {
+  "title": "Néerlandais pour l'ingénieur, partim 2",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "2",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "LANG1957-1",
+    "title": "Néerlandais pour l'ingénieur, partim 1"
+   }
+  ]
+ },
+ "LANG2979-1": {
+  "title": "Allemand pour l'ingénieur, partim 2",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "2",
+  "pre": [],
+  "coreq": [
+   {
+    "code": "LANG1958-1",
+    "title": "Allemand pour l'ingénieur, partim 1"
+   }
+  ]
+ },
+ "PROJ0018-1": {
+  "title": "Projet de création de startup",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "SPOL0099-1": {
+  "title": "Politique et changements sociotechniques",
+  "bloc": "B3",
+  "orga": "Q2",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "INGE0013-1": {
+  "title": "Ingénieur solidaire",
+  "bloc": "B3",
+  "orga": "TA",
+  "credits": "5",
+  "pre": [],
+  "coreq": []
+ },
+ "AREM0013-1": {
+  "title": "Bien redémarrer l'année en faculté des Sciences Appliquées",
+  "bloc": "B1",
+  "orga": "Q1",
+  "credits": "-",
+  "pre": [],
+  "coreq": []
+ },
+ "IREM0010-1": {
+  "title": "Bien recommencer son année",
+  "bloc": "B1",
+  "orga": "Q1",
+  "credits": "-",
+  "pre": [],
+  "coreq": []
+ },
+ "IREM0018-1": {
+  "title": "Conserver ou retrouver sa motivation dans un contexte de redoublement (Q1)",
+  "bloc": "B1",
+  "orga": "Q1",
+  "credits": "-",
+  "pre": [],
+  "coreq": []
+ },
+ "LREM0010-1": {
+  "title": "Faire le point sur ses compétences en français (Q1)",
+  "bloc": "B1",
+  "orga": "Q1",
+  "credits": "-",
+  "pre": [],
+  "coreq": []
+ }
+}
