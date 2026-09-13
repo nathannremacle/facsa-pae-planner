@@ -15,6 +15,15 @@ Outil interactif d'aide à la décision conçu pour les étudiants et l'équipe 
 
 Le système permet de composer son **Programme Annuel de l'Étudiant (PAE)**, de simuler son **horaire hebdomadaire sans conflit**, de vérifier le respect des **règles académiques officielles (prérequis et corequis)**, et d'analyser son éligibilité vers les **12 Masters d'ingénieur civil**.
 
+<p align="center">
+  <a href="https://facsa-pae-planner.vercel.app/">
+    <img src="docs/preview.png" alt="Aperçu de l'interface FACSA PAE Planner" width="850">
+  </a>
+</p>
+<p align="center">
+  <em>Composition interactive du PAE : calcul dynamique des crédits Q1/Q2, validation visuelle des prérequis (P) et corequis (C), et barre d'état permanente.</em>
+</p>
+
 ---
 
 ## Compatibilité avec l'outil officiel ULiège
