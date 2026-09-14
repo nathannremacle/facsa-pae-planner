@@ -94,12 +94,17 @@ L'interface guide l'étudiant à travers **3 étapes progressives** :
   * *Mines et Géologue*
   * *Physicien*
   * *Architecte*
+* **Classification officielle en 3 paliers** (source : [FSA ULiège](https://www.fsa.uliege.be/cms/c_3539822/fr/fsa-options-du-bachelier-ingenieur-civil)) :
+  * 📌 **1. Cours prérequis au master** : cours indispensables de bachelier conditionnant une entrée directe sans lacunes ni devoir rattraper ces prérequis sur les crédits d'options du Master. Suivi en direct du nombre de prérequis validés (ex: `5 / 5 au PAE`).
+  * ⭐ **2. Cours fortement recommandés** : cours disciplinaires majeurs recommandés pour une maîtrise approfondie du domaine.
+  * 💡 **3. Cours d'autres options qui sont complémentaires** : cours connexes d'autres filières pour valoriser l'interdisciplinarité et les profils hybrides (accordéon repliable pour préserver la clarté visuelle).
+* **Débouchés & Finalités officielles** : liens directs vers les fiches programmes et débouchés ULiège Cocoon pour chaque finalité de Master (ex. *Computer systems security*, *Intelligent systems*, *Management* pour l'informatique).
 * **Rappel légal FWB & Niveaux de préparation** :
   * En FWB, le diplôme de bachelier ingénieur civil confère un **accès direct de plein droit à tous les Masters d'ingénieur civil** (120 ECTS fixes, **sans programme complémentaire « Bloc 0 »**).
   * **Continuité directe optimale** : $\ge$ 30 ECTS dans les cours du domaine (tous les crédits de cours au choix restent 100% libres en Master).
   * **Transition allégée avec mineure** : 10 à 25 ECTS dans le domaine (transition fluide, quelques crédits d'options de Master réalloués au rattrapage).
   * **Autre filière / Réorientation** : moins de 10 ECTS (accès direct légal garanti à 120 ECTS, mais réallocation substantielle des cours d'options de Master pour combler les bases).
-* **Tableaux détaillés par Bloc (Bloc 2 / Bloc 3)** : consultation des cours recommandés du domaine avec pastilles d'état (`Acquis`, `Au PAE`, `Non suivi`) et possibilité d'inscrire directement un cours manquant au PAE.
+* **Interactivité complète en Section 3** : consultation des cours avec pastilles officielles P (prérequis RGEE) et C (corequis), pastilles d'état (`Acquis`, `Au PAE`, `Non suivi`) et possibilité d'inscrire ou retirer directement un cours du PAE depuis la vue Master.
 
 ---
 
