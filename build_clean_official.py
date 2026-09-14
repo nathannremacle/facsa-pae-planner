@@ -642,6 +642,43 @@ def build():
       color: #0284c7;
       text-decoration: none;
     }
+    .phase-badge-success {
+      background: #137333 !important;
+      color: white !important;
+    }
+    .master-gauge-track {
+      flex: 1;
+      min-width: 140px;
+      max-width: 280px;
+      height: 9px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+    .master-gauge-fill {
+      display: block;
+      height: 100% !important;
+      min-height: 9px;
+      border-radius: 9999px;
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.35s ease;
+    }
+    .master-gauge-text {
+      font-size: 12.5px;
+      font-weight: bold;
+    }
+    .text-success { color: #15803d; }
+    .text-warning { color: #c2410c; }
+    .text-neutral { color: #64748b; }
+    .tier-chevron-icon {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.2s ease;
+    }
+    .tier-chevron-icon.is-open {
+      transform: rotate(180deg);
+    }
     .tier-stat-badge {
       display: inline-flex;
       align-items: center;
@@ -776,7 +813,7 @@ def build():
       </button>
       <button class="phase-tab" :class="{ active: phase == 3 }" @click="phase = 3">
         <span>3. Débouchés &amp; Masters</span>
-        <span class="phase-badge" :style="directMastersCount > 0 ? 'background: #137333; color: white;' : ''" x-text="directMastersCount + ' optimal' + (directMastersCount > 1 ? 's' : '')"></span>
+        <span class="phase-badge" :class="directMastersCount > 0 ? 'phase-badge-success' : ''" x-text="directMastersCount + ' optimal' + (directMastersCount > 1 ? 's' : '')"></span>
       </button>
     </div>
 """
@@ -952,11 +989,12 @@ def build():
                   <div style="font-size: 13px; color: #444;"><span style="font-weight: bold; color: #111;" x-text="m.domain"></span> &mdash; <span x-text="m.desc"></span></div>
                   
                   <div style="display: flex; align-items: center; gap: 0.8em; margin-top: 0.6em; flex-wrap: wrap;">
-                    <div style="flex: 1; min-width: 140px; max-width: 280px; height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden;">
-                      <div style="height: 100%; border-radius: 4px; transition: width 0.25s ease;"
-                           :style="'width: ' + m.progressPct + '%; background-color: ' + (m.totalEcts >= 30 ? '#137333' : (m.totalEcts >= 10 ? '#f07f3c' : '#888'))"></div>
+                    <div class="master-gauge-track">
+                      <div class="master-gauge-fill"
+                           :style="'width: ' + m.progressPct + '%; height: 100%; background-color: ' + (m.totalEcts >= 30 ? '#16a34a' : (m.totalEcts >= 10 ? '#ea580c' : '#94a3b8')) + ';'"></div>
                     </div>
-                    <div style="font-size: 12.5px; font-weight: bold;" :style="m.totalEcts >= 30 ? 'color: #137333;' : (m.totalEcts >= 10 ? 'color: #c06500;' : 'color: #555;')">
+                    <div class="master-gauge-text"
+                         :class="m.totalEcts >= 30 ? 'text-success' : (m.totalEcts >= 10 ? 'text-warning' : 'text-neutral')">
                       <span x-text="m.totalEcts"></span> / 30 ECTS recommandés du domaine
                     </div>
                     <!-- Pastilles de synthèse des 3 tiers avec icônes vectorielles SVG -->
@@ -1135,7 +1173,7 @@ def build():
                       </span>
                       <button type="button" class="tier-toggle-btn" style="margin-left: auto; display: inline-flex; align-items: center; gap: 4px;">
                         <span x-text="showComp[m.id] ? 'Masquer' : 'Afficher (' + m.compCourses.length + ' cours)'"></span>
-                        <svg style="width: 12px; height: 12px; transition: transform 0.2s ease;" :style="showComp[m.id] ? 'transform: rotate(180deg);' : ''" viewBox="0 0 20 20" fill="currentColor">
+                        <svg class="tier-chevron-icon" :class="showComp[m.id] ? 'is-open' : ''" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
                         </svg>
                       </button>
