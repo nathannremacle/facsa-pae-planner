@@ -675,6 +675,31 @@ def build():
       margin-top: 1.1em;
       margin-bottom: 1.3em;
     }
+    .tier-icon-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .tier-icon-badge svg {
+      width: 14px;
+      height: 14px;
+    }
+    .tier-icon-prereq {
+      background: #fce8e6;
+      color: #c5221f;
+    }
+    .tier-icon-rec {
+      background: #e8f0fe;
+      color: #1a73e8;
+    }
+    .tier-icon-comp {
+      background: #f1f3f4;
+      color: #5f6368;
+    }
     .tier-header {
       display: flex;
       align-items: center;
@@ -835,8 +860,9 @@ def build():
           <h3 class="super"><span>3. Débouchés &amp; Masters d'ingénieur civil</span> - <span>Faculté des Sciences Appliquées</span></h3>
           
           <div class="box info" style="margin: 0.8em 0 1.2em 0; border-left: 4px solid var(--c-faculty-accent); background: #fdfaf6; padding: 0.9em 1.2em; border-radius: 4px;">
-            <h6 style="margin: 0 0 0.4em 0; color: var(--c-faculty-accent); font-size: 14px; font-weight: bold;">
-              💡 Cadre réglementaire FWB &amp; Préparation aux Masters
+            <h6 style="margin: 0 0 0.4em 0; color: var(--c-faculty-accent); font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 6px;">
+              <svg style="width: 16px; height: 16px; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
+              <span>Cadre réglementaire FWB &amp; Préparation aux Masters</span>
             </h6>
             <div style="font-size: 13px; line-height: 1.5; color: #333;">
               En Fédération Wallonie-Bruxelles (FWB), l'obtention du grade de <b>bachelier en ingénieur civil</b> confère un <b>accès direct de plein droit à tous les Masters d'ingénieur civil</b> (programme de 120 ECTS, <b>sans programme complémentaire «&nbsp;Bloc 0&nbsp;»</b>).<br/>
@@ -933,20 +959,23 @@ def build():
                     <div style="font-size: 12.5px; font-weight: bold;" :style="m.totalEcts >= 30 ? 'color: #137333;' : (m.totalEcts >= 10 ? 'color: #c06500;' : 'color: #555;')">
                       <span x-text="m.totalEcts"></span> / 30 ECTS recommandés du domaine
                     </div>
-                    <!-- Pastilles de synthèse des 3 tiers -->
+                    <!-- Pastilles de synthèse des 3 tiers avec icônes vectorielles SVG -->
                     <div style="display: flex; gap: 0.4em; flex-wrap: wrap; margin-left: auto;">
                       <span class="tier-stat-badge" :class="m.prereqTakenCount === m.prereqTotalCount ? 'stat-good' : (m.prereqTakenCount > 0 ? 'stat-warn' : 'stat-neutral')"
                             title="Cours prérequis indispensables au master">
-                        <span>📌 Prérequis : </span><b x-text="m.prereqTakenCount + ' / ' + m.prereqTotalCount"></b>
+                        <svg style="width: 12px; height: 12px; flex-shrink: 0;" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clip-rule="evenodd"/></svg>
+                        <span>Prérequis : </span><b x-text="m.prereqTakenCount + ' / ' + m.prereqTotalCount"></b>
                       </span>
                       <span class="tier-stat-badge stat-info"
                             title="Cours fortement recommandés">
-                        <span>⭐ Recommandés : </span><b x-text="m.recTakenCount + ' / ' + m.recTotalCount"></b>
+                        <svg style="width: 12px; height: 12px; flex-shrink: 0;" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd"/></svg>
+                        <span>Recommandés : </span><b x-text="m.recTakenCount + ' / ' + m.recTotalCount"></b>
                       </span>
                       <template x-if="m.compCourses && m.compCourses.length > 0">
                         <span class="tier-stat-badge stat-neutral"
                               title="Cours complémentaires d'autres options suivis">
-                          <span>💡 Complémentaires : </span><b x-text="m.compTakenCount + ' / ' + m.compTotalCount"></b>
+                          <svg style="width: 12px; height: 12px; flex-shrink: 0;" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"/></svg>
+                          <span>Complémentaires : </span><b x-text="m.compTakenCount + ' / ' + m.compTotalCount"></b>
                         </span>
                       </template>
                     </div>
@@ -956,7 +985,9 @@ def build():
                 <!-- 1. Cours prérequis au master -->
                 <div class="master-tier-block">
                   <div class="tier-header tier-header-prereq">
-                    <span class="tier-icon">📌</span>
+                    <span class="tier-icon-badge tier-icon-prereq" aria-hidden="true">
+                      <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clip-rule="evenodd"/></svg>
+                    </span>
                     <span class="tier-title">1. Cours prérequis au master</span>
                     <span class="pill" :class="m.prereqTakenCount === m.prereqTotalCount ? 'good' : (m.prereqTakenCount > 0 ? 'mineure-pill' : 'neutral-pill')" style="font-size: 11px; padding: 1px 7px;">
                       <span x-text="m.prereqTakenCount + ' / ' + m.prereqTotalCount + ' au PAE'"></span>
@@ -1024,7 +1055,9 @@ def build():
                 <template x-if="m.recCourses && m.recCourses.length > 0">
                   <div class="master-tier-block">
                     <div class="tier-header tier-header-rec">
-                      <span class="tier-icon">⭐</span>
+                      <span class="tier-icon-badge tier-icon-rec" aria-hidden="true">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd"/></svg>
+                      </span>
                       <span class="tier-title">2. Cours fortement recommandés</span>
                       <span class="pill good" style="font-size: 11px; padding: 1px 7px;">
                         <span x-text="m.recTakenCount + ' / ' + m.recTotalCount + ' suivis'"></span>
@@ -1093,13 +1126,18 @@ def build():
                 <template x-if="m.compCourses && m.compCourses.length > 0">
                   <div class="master-tier-block">
                     <div class="tier-header tier-header-comp" @click="toggleComp(m.id)" style="cursor: pointer;" title="Cliquer pour afficher ou masquer les cours complémentaires">
-                      <span class="tier-icon">💡</span>
+                      <span class="tier-icon-badge tier-icon-comp" aria-hidden="true">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"/></svg>
+                      </span>
                       <span class="tier-title">3. Cours d'autres options qui sont complémentaires</span>
                       <span class="pill neutral-pill" style="font-size: 11px; padding: 1px 7px;">
                         <span x-text="m.compTakenCount + ' suivi' + (m.compTakenCount > 1 ? 's' : '') + ' / ' + m.compTotalCount"></span>
                       </span>
-                      <button type="button" class="tier-toggle-btn" style="margin-left: auto;">
-                        <span x-text="showComp[m.id] ? 'Masquer ▲' : 'Afficher (' + m.compCourses.length + ' cours) ▼'"></span>
+                      <button type="button" class="tier-toggle-btn" style="margin-left: auto; display: inline-flex; align-items: center; gap: 4px;">
+                        <span x-text="showComp[m.id] ? 'Masquer' : 'Afficher (' + m.compCourses.length + ' cours)'"></span>
+                        <svg style="width: 12px; height: 12px; transition: transform 0.2s ease;" :style="showComp[m.id] ? 'transform: rotate(180deg);' : ''" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
                       </button>
                     </div>
                     <div x-show="showComp[m.id]" x-cloak>
@@ -1268,8 +1306,9 @@ def build():
               </li>
             </template>
           </ul>
-          <div style="font-size: 12px; color: #666; margin-top: 0.5em; padding-top: 0.4em; border-top: 1px solid rgba(0,0,0,0.08); line-height: 1.45;">
-            📘 <b>Cadre r&eacute;glementaire &amp; d&eacute;marche</b> : Selon l'article 50, &sect;&nbsp;5 du <em>R&egrave;glement g&eacute;n&eacute;ral des &eacute;tudes et des &eacute;valuations (RGEE 2026-2027)</em>, cette demande s'introduit aupr&egrave;s de votre conseiller/&egrave;re acad&eacute;mique. Le jury l'&eacute;value g&eacute;n&eacute;ralement favorablement si votre PAE totalise 180 ECTS (fin de cycle de bachelier), si le pr&eacute;requis se donne au Q1 et le cours au Q2 (ou au m&ecirc;me quadrimestre), s'il a d&eacute;j&agrave; &eacute;t&eacute; suivi ant&eacute;rieurement, et sans conflit horaire.
+          <div style="font-size: 12px; color: #666; margin-top: 0.5em; padding-top: 0.4em; border-top: 1px solid rgba(0,0,0,0.08); line-height: 1.45; display: flex; align-items: flex-start; gap: 6px;">
+            <svg style="width: 15px; height: 15px; flex-shrink: 0; color: #1a73e8; margin-top: 2px;" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10.75 16.82A7.462 7.462 0 0 1 15 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0 0 18 15.06v-11a.75.75 0 0 0-.546-.721A9.006 9.006 0 0 0 15 3a8.963 8.963 0 0 0-4.25 1.065V16.82ZM9.25 4.065A8.963 8.963 0 0 0 5 3c-.85 0-1.673.118-2.454.339A.75.75 0 0 0 2 4.06v11a.75.75 0 0 0 .954.722A7.46 7.46 0 0 1 5 15.5c1.579 0 3.042.487 4.25 1.32V4.065Z"/></svg>
+            <div><b>Cadre r&eacute;glementaire &amp; d&eacute;marche</b> : Selon l'article 50, &sect;&nbsp;5 du <em>R&egrave;glement g&eacute;n&eacute;ral des &eacute;tudes et des &eacute;valuations (RGEE 2026-2027)</em>, cette demande s'introduit aupr&egrave;s de votre conseiller/&egrave;re acad&eacute;mique. Le jury l'&eacute;value g&eacute;n&eacute;ralement favorablement si votre PAE totalise 180 ECTS (fin de cycle de bachelier), si le pr&eacute;requis se donne au Q1 et le cours au Q2 (ou au m&ecirc;me quadrimestre), s'il a d&eacute;j&agrave; &eacute;t&eacute; suivi ant&eacute;rieurement, et sans conflit horaire.</div>
           </div>
         </div>
       </template>
@@ -1500,9 +1539,9 @@ def build():
           if (isAcq) {
             tags += `<span class="req-dot pre-ok" title="Prérequis validé : ${p.code} ${p.title}">P</span>`;
           } else if (isSel) {
-            tags += `<span class="req-dot pre-warn" title="⚠️ Prérequis inscrit au PAE en parallèle : requiert une dérogation de fin de cycle (RGEE Art. 50 § 5) pour transformation en co-requis : ${p.code} ${p.title}">P</span>`;
+            tags += `<span class="req-dot pre-warn" title="[Dérogation RGEE Art. 50 § 5] Prérequis inscrit au PAE en parallèle : requiert une dérogation de fin de cycle pour transformation en co-requis : ${p.code} ${p.title}">P</span>`;
           } else {
-            tags += `<span class="req-dot pre-bad" title="⛔ Prérequis non acquis et absent du PAE (bloquant) : ${p.code} ${p.title}">P</span>`;
+            tags += `<span class="req-dot pre-bad" title="[Bloquant] Prérequis non acquis et absent du PAE : ${p.code} ${p.title}">P</span>`;
           }
         }
 
@@ -1516,7 +1555,7 @@ def build():
           } else if (isSelected) {
             tags += `<span class="req-dot coreq-ok" title="Corequis inscrit au PAE pour cette année : ${c.code} ${c.title}">C</span>`;
           } else {
-            tags += `<span class="req-dot coreq-warn" title="⚠️ Dérogation de corequis requise au portail : ${c.code} ${c.title}">C</span>`;
+            tags += `<span class="req-dot coreq-warn" title="[Dérogation requise] Dérogation de corequis requise au portail : ${c.code} ${c.title}">C</span>`;
           }
         }
 
@@ -1932,7 +1971,7 @@ def build():
           if (optAnalysis.sharedCourses && optAnalysis.sharedCourses.length > 0 && optAnalysis.major && optAnalysis.minor) {
             const sharedList = optAnalysis.sharedCourses.map(c => '<code>' + c.code + '</code>').join(', ');
             h += '<div style="margin-top: 0.6em; padding: 0.5em 0.8em; background: #fffdf4; border-left: 3px solid #f9ab00; border-radius: 3px; font-size: 12.5px; line-height: 1.45;">'
-               + '⚠️ <b>R&egrave;gle facultaire de non-cumul (cours partag&eacute;s)&nbsp;:</b><br/>'
+               + '<div style="display:flex;align-items:flex-start;gap:6px;margin-bottom:4px;"><svg style="width:15px;height:15px;flex-shrink:0;color:#b06000;margin-top:1px;" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" /></svg><b>R&egrave;gle facultaire de non-cumul (cours partag&eacute;s)&nbsp;:</b></div>'
                + 'Le(s) cours ' + sharedList + ' appartien(nen)t simultan&eacute;ment &agrave; <em>' + optAnalysis.major.domain + '</em> et <em>' + optAnalysis.minor.domain + '</em>. '
                + 'Au PAE, chaque cours doit &ecirc;tre allou&eacute; &agrave; <b>une seule option</b>.<br/>'
                + 'En les allouant &agrave; votre majeure (' + optAnalysis.major.ects + ' cr), votre mineure ne dispose que de <b>' + optAnalysis.minor.ects + ' cr distincts</b>'

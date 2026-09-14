@@ -95,9 +95,9 @@ L'interface guide l'étudiant à travers **3 étapes progressives** :
   * *Physicien*
   * *Architecte*
 * **Classification officielle en 3 paliers** (source : [FSA ULiège](https://www.fsa.uliege.be/cms/c_3539822/fr/fsa-options-du-bachelier-ingenieur-civil)) :
-  * 📌 **1. Cours prérequis au master** : cours indispensables de bachelier conditionnant une entrée directe sans lacunes ni devoir rattraper ces prérequis sur les crédits d'options du Master. Suivi en direct du nombre de prérequis validés (ex: `5 / 5 au PAE`).
-  * ⭐ **2. Cours fortement recommandés** : cours disciplinaires majeurs recommandés pour une maîtrise approfondie du domaine.
-  * 💡 **3. Cours d'autres options qui sont complémentaires** : cours connexes d'autres filières pour valoriser l'interdisciplinarité et les profils hybrides (accordéon repliable pour préserver la clarté visuelle).
+  * **1. Cours prérequis au master** : cours indispensables de bachelier conditionnant une entrée directe sans lacunes ni devoir rattraper ces prérequis sur les crédits d'options du Master. Suivi en direct du nombre de prérequis validés (ex: `5 / 5 au PAE`).
+  * **2. Cours fortement recommandés** : cours disciplinaires majeurs recommandés pour une maîtrise approfondie du domaine.
+  * **3. Cours d'autres options qui sont complémentaires** : cours connexes d'autres filières pour valoriser l'interdisciplinarité et les profils hybrides (accordéon repliable pour préserver la clarté visuelle).
 * **Débouchés & Finalités officielles** : liens directs vers les fiches programmes et débouchés ULiège Cocoon pour chaque finalité de Master (ex. *Computer systems security*, *Intelligent systems*, *Management* pour l'informatique).
 * **Rappel légal FWB & Niveaux de préparation** :
   * En FWB, le diplôme de bachelier ingénieur civil confère un **accès direct de plein droit à tous les Masters d'ingénieur civil** (120 ECTS fixes, **sans programme complémentaire « Bloc 0 »**).
