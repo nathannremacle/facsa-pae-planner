@@ -329,6 +329,11 @@ def build():
       color: #c5221f;
       border: 1px solid #ea4335;
     }
+    .req-dot.pre-warn {
+      background: #fef7e0;
+      color: #b06000;
+      border: 1px solid #f9ab00;
+    }
     .req-dot.coreq-ok {
       background: #e6f4ea;
       color: #137333;
@@ -591,7 +596,7 @@ def build():
       </button>
       <button class="phase-tab" :class="{ active: phase == 3 }" @click="phase = 3">
         <span>3. Débouchés &amp; Masters</span>
-        <span class="phase-badge" :style="directMastersCount > 0 ? 'background: #137333; color: white;' : ''" x-text="directMastersCount + ' direct' + (directMastersCount > 1 ? 's' : '')"></span>
+        <span class="phase-badge" :style="directMastersCount > 0 ? 'background: #137333; color: white;' : ''" x-text="directMastersCount + ' optimal' + (directMastersCount > 1 ? 's' : '')"></span>
       </button>
     </div>
 """
@@ -646,8 +651,8 @@ def build():
             <button class="alt" @click="resetSelection();window.location.hash=''" title="cliquez ici pour effacer la sélection du PAE">
               <svg fill="currentColor"><use href="#trash"/></svg><span>Tout effacer</span>
             </button>
-            <button class="alt" @click="phase = 3" title="Voir les masters accessibles avec ces choix" style="color: #ffffff; font-weight: 500;">
-              <span>Masters accessibles &rarr;</span>
+            <button class="alt" @click="phase = 3" title="Voir la préparation vers les 12 masters avec ces choix" style="color: #ffffff; font-weight: 500;">
+              <span>Masters &amp; Débouchés &rarr;</span>
             </button>
             <button @click="share.show = true" title="cliquez ici pour générer un lien de partage">
               <svg fill="currentColor"><use href="#arrow-up-on-square"/></svg><span>Partager</span>
@@ -656,7 +661,7 @@ def build():
           <h3 class="super" x-html="addBlocks(layout.h1)"></h3>
           <div class="phase-desc">
             Sélectionnez vos cours pour cette année. Les cours déjà acquis à l'étape 1 sont masqués.<br/>
-            Les pastilles rondes <b>P</b> (prérequis) et <b>C</b> (corequis) indiquent leur statut au survol du curseur.
+            Les pastilles rondes <b>P</b> (prérequis) et <b>C</b> (corequis) indiquent leur statut (validé, dérogation requise, ou bloquant).
           </div>
         </div>
       </template>
@@ -672,51 +677,61 @@ def build():
               <svg fill="currentColor"><use href="#arrow-up-on-square"/></svg><span>Partager</span>
             </button>
           </span>
-          <h3 class="super"><span>3. Débouchés &amp; Masters accessibles</span> - <span>Faculté des Sciences Appliquées</span></h3>
+          <h3 class="super"><span>3. Débouchés &amp; Masters d'ingénieur civil</span> - <span>Faculté des Sciences Appliquées</span></h3>
           
-          <div class="phase-desc">
-            Niveau d'acc&egrave;s aux <b>12 Masters d'ing&eacute;nieur civil</b> de l'ULi&egrave;ge selon vos cours <b>acquis</b> et <b>inscrits &agrave; votre PAE</b>.<br/>
-            L'option principale (&ge; 30 cr&eacute;dits dans le domaine) conf&egrave;re l'<b>acc&egrave;s direct de plein droit</b>. Une mineure (&ge; 10 cr&eacute;dits) permet un <b>acc&egrave;s avec passerelle all&eacute;g&eacute;e</b>.
+          <div class="box info" style="margin: 0.8em 0 1.2em 0; border-left: 4px solid var(--c-faculty-accent); background: #fdfaf6; padding: 0.9em 1.2em; border-radius: 4px;">
+            <h6 style="margin: 0 0 0.4em 0; color: var(--c-faculty-accent); font-size: 14px; font-weight: bold;">
+              💡 Cadre réglementaire FWB &amp; Préparation aux Masters
+            </h6>
+            <div style="font-size: 13px; line-height: 1.5; color: #333;">
+              En Fédération Wallonie-Bruxelles (FWB), l'obtention du grade de <b>bachelier en ingénieur civil</b> confère un <b>accès direct de plein droit à tous les Masters d'ingénieur civil</b> (programme de 120 ECTS, <b>sans programme complémentaire «&nbsp;Bloc 0&nbsp;»</b>).<br/>
+              Vos choix d'options en bachelier définissent votre niveau de préparation :
+              <ul style="margin: 0.4em 0 0.2em 1.2em; padding: 0;">
+                <li><b>Continuité directe optimale (&ge;&nbsp;30 ECTS du domaine)</b> : Vous avez vu tous les prérequis disciplinaires. Vos crédits de cours au choix en Master restent <b>100% libres</b> pour vous spécialiser.</li>
+                <li><b>Transition allégée avec mineure (10 à 25 ECTS)</b> : Transition fluide. Seuls quelques cours clés non vus en bachelier seront réalloués sur les crédits d'options du Master (sans allonger les 120 ECTS).</li>
+                <li><b>Autre filière (&lt;&nbsp;10 ECTS)</b> : L'accès légal reste garanti (120 ECTS), mais une part substantielle de vos options de Master servira à rattraper les cours fondamentaux du domaine (exigeant notamment en Physique, Matériaux ou Géologie).</li>
+              </ul>
+            </div>
           </div>
 
           <!-- Barre de filtres dédiée pour les Masters -->
           <div class="masters-filter-bar">
-            <div class="filter-label">Filtrer par niveau d'acc&egrave;s :</div>
+            <div class="filter-label">Filtrer par niveau de préparation :</div>
             <div class="filter-buttons">
               <button class="filter-pill" :class="{ active: masterFilter === 'all' }" @click="masterFilter = 'all'">
                 <span>Tous les masters (12)</span>
               </button>
               <button class="filter-pill" :class="{ active: masterFilter === 'direct' }" @click="masterFilter = 'direct'">
-                <span>Acc&egrave;s direct (<span x-text="directMastersCount"></span>)</span>
+                <span>Continuité optimale (<span x-text="directMastersCount"></span>)</span>
               </button>
               <button class="filter-pill" :class="{ active: masterFilter === 'mineure' }" @click="masterFilter = 'mineure'">
                 <span>Avec mineure (<span x-text="mineureMastersCount"></span>)</span>
               </button>
               <button class="filter-pill" :class="{ active: masterFilter === 'passerelle' }" @click="masterFilter = 'passerelle'">
-                <span>Programme standard (<span x-text="12 - directMastersCount - mineureMastersCount"></span>)</span>
+                <span>Autre filière (<span x-text="12 - directMastersCount - mineureMastersCount"></span>)</span>
               </button>
             </div>
           </div>
 
           <!-- Synthèse officielle calquée sur le panneau #panels de l'étape 2 -->
           <div class="box info" style="margin: 0 0 1.8em 0;">
-            <h6>Synth&egrave;se de vos acc&egrave;s aux Masters d'ing&eacute;nieur civil</h6>
-            <div style="margin-bottom: 0.4em;">Sur base de votre parcours (<b><span x-text="acquisEcts"></span> cr&eacute;dits acquis</b> et <b><span x-text="ects[1] + ects[2]"></span> cr&eacute;dits au PAE</b> &mdash; 30 cr&eacute;dits requis pour l'acc&egrave;s direct) :</div>
+            <h6>Synth&egrave;se de votre pr&eacute;paration aux 12 Masters d'ing&eacute;nieur civil</h6>
+            <div style="margin-bottom: 0.4em;">Sur base de votre parcours (<b><span x-text="acquisEcts"></span> cr&eacute;dits acquis</b> et <b><span x-text="ects[1] + ects[2]"></span> cr&eacute;dits au PAE</b>) :</div>
             <ul>
               <li>
-                <b><span x-text="directMastersCount"></span> Master<span x-show="directMastersCount > 1">s</span> en acc&egrave;s direct garanti</b> (&ge; 30 cr&eacute;dits dans le domaine &mdash; Option principale)
+                <b><span x-text="directMastersCount"></span> Master<span x-show="directMastersCount > 1">s</span> en continuit&eacute; directe optimale</b> (&ge; 30 cr&eacute;dits dans le domaine &mdash; options de Master 100% libres)
                 <template x-if="directMastersCount > 0">
-                  <span class="pill good" x-text="directMastersCount + ' direct' + (directMastersCount > 1 ? 's' : '')"></span>
+                  <span class="pill good" x-text="directMastersCount + ' optimal' + (directMastersCount > 1 ? 's' : '')"></span>
                 </template>
               </li>
               <li>
-                <b><span x-text="mineureMastersCount"></span> Master<span x-show="mineureMastersCount > 1">s</span> accessible<span x-show="mineureMastersCount > 1">s</span> avec mineure</b> (10 &agrave; 25 cr&eacute;dits &mdash; passerelle all&eacute;g&eacute;e)
+                <b><span x-text="mineureMastersCount"></span> Master<span x-show="mineureMastersCount > 1">s</span> en transition all&eacute;g&eacute;e avec mineure</b> (10 &agrave; 25 cr&eacute;dits &mdash; transition fluide)
                 <template x-if="mineureMastersCount > 0">
                   <span class="pill mineure-pill" x-text="mineureMastersCount + ' mineure' + (mineureMastersCount > 1 ? 's' : '')"></span>
                 </template>
               </li>
               <li>
-                <b><span x-text="12 - directMastersCount - mineureMastersCount"></span> Master<span x-show="12 - directMastersCount - mineureMastersCount > 1">s</span> avec programme standard</b> (&lt; 10 cr&eacute;dits)
+                <b><span x-text="12 - directMastersCount - mineureMastersCount"></span> Master<span x-show="12 - directMastersCount - mineureMastersCount > 1">s</span> en autre fili&egrave;re</b> (&lt; 10 cr&eacute;dits &mdash; acc&egrave;s direct l&eacute;gal garanti sans Bloc 0, r&eacute;allocation d'options en Master)
               </li>
             </ul>
           </div>
@@ -736,7 +751,7 @@ def build():
                         x-text="m.statusBadge"></span>
                 </div>
 
-                <!-- Description & jauge des 30 crédits requis pour accès direct -->
+                <!-- Description & jauge des 30 crédits recommandés dans le domaine -->
                 <div class="phase-desc" style="clear: both; margin: 0.2em 0 1em 0;">
                   <div style="font-size: 13px; color: #444;"><span style="font-weight: bold; color: #111;" x-text="m.domain"></span> &mdash; <span x-text="m.desc"></span></div>
                   
@@ -746,21 +761,26 @@ def build():
                            :style="'width: ' + m.progressPct + '%; background-color: ' + (m.totalEcts >= 30 ? '#137333' : (m.totalEcts >= 10 ? '#f07f3c' : '#888'))"></div>
                     </div>
                     <div style="font-size: 12.5px; font-weight: bold;" :style="m.totalEcts >= 30 ? 'color: #137333;' : (m.totalEcts >= 10 ? 'color: #c06500;' : 'color: #555;')">
-                      <span x-text="m.totalEcts"></span> / 30 ECTS de prérequis
+                      <span x-text="m.totalEcts"></span> / 30 ECTS recommandés du domaine
                       <span style="font-weight: normal; color: #666;" x-text="'(' + m.takenCourses.length + ' cours validé' + (m.takenCourses.length > 1 ? 's' : '') + ' ou au PAE)'"></span>
                     </div>
                     <template x-if="m.totalEcts >= 30">
-                      <span style="font-size: 12px; color: #137333; font-weight: bold; margin-left: auto;">&check; Accès direct garanti</span>
+                      <span style="font-size: 12px; color: #137333; font-weight: bold; margin-left: auto;">&check; Continuité optimale (options 100% libres)</span>
                     </template>
-                    <template x-if="m.totalEcts < 30">
-                      <span style="font-size: 12px; color: #b06000; margin-left: auto;">
-                        (Il manque <b x-text="30 - m.totalEcts"></b> cr pour l'accès direct)
+                    <template x-if="m.totalEcts < 30 && m.totalEcts >= 10">
+                      <span style="font-size: 12px; color: #c06500; font-weight: bold; margin-left: auto;">
+                        Transition allégée (~<span x-text="30 - m.totalEcts"></span> cr d'options de Master réalloués)
+                      </span>
+                    </template>
+                    <template x-if="m.totalEcts < 10">
+                      <span style="font-size: 12px; color: #666; margin-left: auto;">
+                        Accès direct garanti (120 ECTS) &middot; Réallocation d'options en Master
                       </span>
                     </template>
                   </div>
                 </div>
 
-                <!-- Tables des cours prérequis organisés par Bloc (Bloc 2 et Bloc 3) comme en Section 2 -->
+                <!-- Tables des cours recommandés organisés par Bloc (Bloc 2 et Bloc 3) comme en Section 2 -->
                 <template x-for="b in m.blocs" :key="b.name">
                   <div class="master-bloc-item">
                     <h5 x-text="b.name"></h5>
@@ -800,7 +820,7 @@ def build():
                                   </span>
                                 </template>
                                 <template x-if="!c.isAcquis && !c.isSelected">
-                                  <span class="status-badge non-suivi" title="Cours prérequis non encore inscrit">
+                                  <span class="status-badge non-suivi" title="Non suivi en bachelier : si ce Master est choisi, ce cours sera réalloué sur vos crédits d'options de Master">
                                     <span>Non suivi</span>
                                   </span>
                                 </template>
@@ -910,16 +930,41 @@ def build():
         </div>
       </template>
 
+      <!-- Dérogations de fin de cycle sur prérequis (RGEE Art. 50, § 5) -->
+      <template x-if="paeExigences.derogationsPre.length">
+        <div class="box" style="border-left: 4px solid #f9ab00; background: #fffdf6;">
+          <h6 style="color: #b06000;">D&eacute;rogations de fin de cycle sur pr&eacute;requis (RGEE Art. 50, &sect;&nbsp;5)</h6>
+          <div>Ces cours et leurs pr&eacute;requis sont <b>inscrits simultan&eacute;ment &agrave; votre PAE</b> cette ann&eacute;e. En principe, un pr&eacute;requis doit &ecirc;tre r&eacute;ussi lors d'une ann&eacute;e ant&eacute;rieure, mais <b>en fin de cycle</b>, le jury peut le transformer en <b>co-requis</b> sur d&eacute;cision individuelle&nbsp;:</div>
+          <ul style="margin: 0.5em 0;">
+            <template x-for="dp in paeExigences.derogationsPre" :key="dp.course + dp.code">
+              <li>
+                <b><span x-text="dp.course"></span> &mdash; <span x-text="dp.courseTitle"></span></b>
+                <span class="pill" style="background: #fef7e0; color: #b06000; border: 1px solid #f9ab00;">D&eacute;rogation fin de cycle requise</span>
+                <br/>
+                <span style="opacity:.85; font-size:12.5px;">Pr&eacute;requis inscrit en parall&egrave;le au PAE&nbsp;: <code x-text="dp.code"></code> <span x-text="dp.titre"></span></span>
+              </li>
+            </template>
+          </ul>
+          <div style="font-size: 12px; color: #666; margin-top: 0.5em; padding-top: 0.4em; border-top: 1px solid rgba(0,0,0,0.08); line-height: 1.45;">
+            📘 <b>Cadre r&eacute;glementaire &amp; d&eacute;marche</b> : Selon l'article 50, &sect;&nbsp;5 du <em>R&egrave;glement g&eacute;n&eacute;ral des &eacute;tudes et des &eacute;valuations (RGEE 2026-2027)</em>, cette demande s'introduit aupr&egrave;s de votre conseiller/&egrave;re acad&eacute;mique. Le jury l'&eacute;value g&eacute;n&eacute;ralement favorablement si votre PAE totalise 180 ECTS (fin de cycle de bachelier), si le pr&eacute;requis se donne au Q1 et le cours au Q2 (ou au m&ecirc;me quadrimestre), s'il a d&eacute;j&agrave; &eacute;t&eacute; suivi ant&eacute;rieurement, et sans conflit horaire.
+          </div>
+        </div>
+      </template>
+
+      <!-- Prérequis manquants stricts (bloquants) -->
       <template x-if="paeExigences.blocking.length">
         <div class="box stop">
           <h6>Pr&eacute;requis manquants (bloquants)</h6>
-          <div>Attention&nbsp;: ces cours exigent un pr&eacute;requis qui n'a pas &eacute;t&eacute; coch&eacute; dans vos acquis&nbsp;:</div>
+          <div>Attention&nbsp;: ces cours exigent un pr&eacute;requis qui n'est <b>ni acquis, ni inscrit &agrave; votre PAE</b>&nbsp;:</div>
           <ul>
             <template x-for="b in paeExigences.blocking" :key="b.course + b.code">
               <li><b><span x-text="b.course"></span> &mdash; <span x-text="b.courseTitle"></span></b> exige
-                  <code x-text="b.code"></code> <span x-text="b.titre"></span> (non acquis).</li>
+                  <code x-text="b.code"></code> <span x-text="b.titre"></span> (absent de vos acquis et de votre PAE).</li>
             </template>
           </ul>
+          <div style="font-size: 12px; opacity: 0.9; margin-top: 0.4em; line-height: 1.4;">
+            Pour pouvoir solliciter une d&eacute;rogation de fin de cycle aupr&egrave;s du jury (RGEE Art. 50 &sect;&nbsp;5), le cours pr&eacute;requis doit &ecirc;tre obligatoirement ajout&eacute; &agrave; votre PAE.
+          </div>
         </div>
       </template>
 
@@ -965,8 +1010,8 @@ def build():
               <span class="num" x-text="ects[1] + ects[2]">0</span> crédits
             </span>
             <div id="b" class="actions">
-              <button class="alt" @click="phase = 3" title="Voir les masters accessibles avec mon PAE" style="color: #ffffff; font-weight: 500;">
-                <span>Masters accessibles &rarr;</span>
+              <button class="alt" @click="phase = 3" title="Voir la préparation vers les 12 masters avec mon PAE" style="color: #ffffff; font-weight: 500;">
+                <span>Masters &amp; Débouchés &rarr;</span>
               </button>
               <button id="voir" @click="toggleAgenda" :title="showAgenda ? 'Cliquez ici pour retourner à la liste des cours' : 'Cliquez ici pour afficher l’horaire'">
                 <svg fill="currentColor" x-show="!showAgenda"><use href="#calendar-days"/></svg>
@@ -987,7 +1032,7 @@ def build():
               </button>
             </div>
             <span id="cr">
-              <span class="num" x-text="directMastersCount">0</span> direct<span x-show="directMastersCount > 1">s</span> &middot; <span class="num" x-text="mineureMastersCount">0</span> mineure<span x-show="mineureMastersCount > 1">s</span>
+              <span class="num" x-text="directMastersCount">0</span> optimale<span x-show="directMastersCount > 1">s</span> &middot; <span class="num" x-text="mineureMastersCount">0</span> mineure<span x-show="mineureMastersCount > 1">s</span>
             </span>
           </div>
         </template>
@@ -1122,10 +1167,13 @@ def build():
         for (const p of (info.pre || [])) {
           const pc = p.code.substring(0, 10);
           const isAcq = !!this.acquis[pc];
+          const isSel = !!this.selected[pc];
           if (isAcq) {
             tags += `<span class="req-dot pre-ok" title="Prérequis validé : ${p.code} ${p.title}">P</span>`;
+          } else if (isSel) {
+            tags += `<span class="req-dot pre-warn" title="⚠️ Prérequis inscrit au PAE en parallèle : requiert une dérogation de fin de cycle (RGEE Art. 50 § 5) pour transformation en co-requis : ${p.code} ${p.title}">P</span>`;
           } else {
-            tags += `<span class="req-dot pre-bad" title="⛔ Prérequis manquant (bloquant) : ${p.code} ${p.title}">P</span>`;
+            tags += `<span class="req-dot pre-bad" title="⛔ Prérequis non acquis et absent du PAE (bloquant) : ${p.code} ${p.title}">P</span>`;
           }
         }
 
@@ -1226,13 +1274,13 @@ def build():
           }
 
           let category = 'passerelle';
-          let badge = 'Programme standard (< 10 cr)';
+          let badge = 'Autre filière (< 10 cr)';
           if (totEcts >= 30) {
             category = 'direct';
-            badge = 'Accès direct garanti (≥ 30 cr)';
+            badge = 'Continuité optimale (≥ 30 cr)';
           } else if (totEcts >= 10) {
             category = 'mineure';
-            badge = 'Accès avec mineure (10-25 cr)';
+            badge = 'Transition allégée (10-25 cr)';
           }
 
           const progress = Math.min(100, Math.round((totEcts / 30) * 100));
@@ -1297,10 +1345,10 @@ def build():
       get mastersSummaryText() {
         const d = this.directMastersCount;
         const m = this.mineureMastersCount;
-        if (d > 0 && m > 0) return `${d} master${d > 1 ? 's' : ''} direct${d > 1 ? 's' : ''} & ${m} avec mineure`;
-        if (d > 0) return `${d} master${d > 1 ? 's' : ''} direct${d > 1 ? 's' : ''} garanti${d > 1 ? 's' : ''}`;
+        if (d > 0 && m > 0) return `${d} en continuité directe & ${m} avec mineure`;
+        if (d > 0) return `${d} master${d > 1 ? 's' : ''} en continuité directe optimale`;
         if (m > 0) return `${m} master${m > 1 ? 's' : ''} accessible${m > 1 ? 's' : ''} avec mineure`;
-        return 'Aucun master en accès direct (choisissez vos options)';
+        return "Accès direct garanti aux 12 masters (réallocation d'options en master)";
       },
 
       toggleMasterCourse(shortcode, event) {
@@ -1319,12 +1367,163 @@ def build():
         this.toggleMasterCourse(shortcode, { target: { checked: true } });
       },
 
+      // Calcul disjoint et rigoureux des options majeure (>= 30 cr) et mineure (>= 10 cr)
+      computeDisjointOptions() {
+        const clean = (d) => d.replace(/^Domaine (?:de |des |du )?/, '').replace(/^du du /, 'du ');
+        
+        // Tous les cours d'options pris (actuellement au PAE + déjà acquis)
+        const optCoursesMap = {};
+        const addOptCourse = (code, isAcq, isSel) => {
+          const ds = this.DOMAINES[code] || [];
+          if (!ds.length) return;
+          const e = this.ECTS_MAP[code] || 0;
+          const cleanDomains = [...new Set(ds.map(d => clean(d[0])))];
+          optCoursesMap[code] = {
+            code,
+            ects: e,
+            domains: cleanDomains,
+            isAcquis: isAcq,
+            isSelected: isSel
+          };
+        };
+
+        for (const code of this.listOfSelected) addOptCourse(code, false, true);
+        for (const [code, val] of Object.entries(this.acquis)) {
+          if (val && !optCoursesMap[code]) addOptCourse(code, true, false);
+        }
+
+        const optCourses = Object.values(optCoursesMap);
+        if (!optCourses.length) {
+          return {
+            hasOptions: false,
+            entries: [],
+            major: null,
+            minor: null,
+            sharedCourses: []
+          };
+        }
+
+        // Domaines représentés et totaux bruts
+        const allDomains = new Set();
+        const rawByDomain = {};
+        for (const c of optCourses) {
+          for (const d of c.domains) {
+            allDomains.add(d);
+            rawByDomain[d] = (rawByDomain[d] || 0) + c.ects;
+          }
+        }
+        const domainList = Array.from(allDomains);
+        const entries = Object.entries(rawByDomain).sort((a, b) => b[1] - a[1]);
+
+        if (domainList.length === 1) {
+          const d = domainList[0];
+          const tot = rawByDomain[d];
+          return {
+            hasOptions: true,
+            entries: entries,
+            major: { domain: d, ects: tot, isSatisfied: tot >= 30, courses: optCourses },
+            minor: null,
+            sharedCourses: []
+          };
+        }
+
+        // Trouver la meilleure paire disjointe (dMaj, dMin)
+        let bestPair = null;
+        let bestScore = -1;
+
+        for (let i = 0; i < domainList.length; i++) {
+          for (let j = 0; j < domainList.length; j++) {
+            if (i === j) continue;
+            const dMaj = domainList[i];
+            const dMin = domainList[j];
+
+            const pureMaj = [];
+            const pureMin = [];
+            const shared = [];
+
+            for (const c of optCourses) {
+              const inMaj = c.domains.includes(dMaj);
+              const inMin = c.domains.includes(dMin);
+              if (inMaj && inMin) shared.push(c);
+              else if (inMaj) pureMaj.push(c);
+              else if (inMin) pureMin.push(c);
+            }
+
+            const pureMajEcts = pureMaj.reduce((s, c) => s + c.ects, 0);
+            const pureMinEcts = pureMin.reduce((s, c) => s + c.ects, 0);
+
+            let optMajEcts = pureMajEcts;
+            let optMinEcts = pureMinEcts;
+            let optMajCourses = [...pureMaj];
+            let optMinCourses = [...pureMin];
+
+            if (shared.length > 0) {
+              let bestSubScore = -1;
+              const totalSub = 1 << Math.min(shared.length, 12);
+              for (let mask = 0; mask < totalSub; mask++) {
+                let curMajE = pureMajEcts;
+                let curMinE = pureMinEcts;
+                for (let k = 0; k < shared.length; k++) {
+                  if ((mask & (1 << k)) !== 0) curMajE += shared[k].ects;
+                  else curMinE += shared[k].ects;
+                }
+                let s = 0;
+                if (curMajE >= 30 && curMinE >= 10) s = 10000 + curMajE + curMinE;
+                else if (curMajE >= 30) s = 5000 + curMinE;
+                else if (curMinE >= 10) s = 2000 + curMajE;
+                else s = curMajE * 2 + curMinE;
+
+                if (s > bestSubScore) {
+                  bestSubScore = s;
+                  optMajEcts = curMajE;
+                  optMinEcts = curMinE;
+                  optMajCourses = [...pureMaj];
+                  optMinCourses = [...pureMin];
+                  for (let k = 0; k < shared.length; k++) {
+                    if ((mask & (1 << k)) !== 0) optMajCourses.push(shared[k]);
+                    else optMinCourses.push(shared[k]);
+                  }
+                }
+              }
+            }
+
+            let pairScore = 0;
+            if (optMajEcts >= 30 && optMinEcts >= 10) pairScore = 20000 + optMajEcts + optMinEcts;
+            else if (optMajEcts >= 30) pairScore = 10000 + optMinEcts;
+            else if (optMinEcts >= 10) pairScore = 5000 + optMajEcts;
+            else pairScore = optMajEcts * 2 + optMinEcts;
+
+            if (pairScore > bestScore) {
+              bestScore = pairScore;
+              bestPair = {
+                major: { domain: dMaj, ects: optMajEcts, isSatisfied: optMajEcts >= 30, courses: optMajCourses },
+                minor: { domain: dMin, ects: optMinEcts, isSatisfied: optMinEcts >= 10, courses: optMinCourses },
+                sharedCourses: shared,
+                rawMajEcts: rawByDomain[dMaj],
+                rawMinEcts: rawByDomain[dMin]
+              };
+            }
+          }
+        }
+
+        return {
+          hasOptions: true,
+          entries: entries,
+          major: bestPair ? bestPair.major : null,
+          minor: bestPair ? bestPair.minor : null,
+          sharedCourses: bestPair ? bestPair.sharedCourses : [],
+          rawMajEcts: bestPair ? bestPair.rawMajEcts : 0,
+          rawMinEcts: bestPair ? bestPair.rawMinEcts : 0
+        };
+      },
+
       // Analyse globale des exigences et spécialisations pour la phase 2
       get paeExigences() {
         const sel = this.listOfSelected;
         const selSet = new Set(sel);
         const flags = [];
         const blocking = [];
+        const derogationsPre = [];
 
         for (const code of sel) {
           const info = this.COREQUIS[code];
@@ -1345,50 +1544,72 @@ def build():
             });
           }
 
-          // Prérequis bloquants
+          // Prérequis
           for (const p of (info.pre || [])) {
             const pc = p.code.substring(0, 10);
-            if (!this.acquis[pc] && !selSet.has(pc)) {
-              blocking.push({
-                course: code,
-                courseTitle: info.title,
-                code: p.code,
-                titre: p.title
-              });
+            if (!this.acquis[pc]) {
+              if (selSet.has(pc)) {
+                // Inscrit en parallèle au PAE : dérogation fin de cycle requise (RGEE Art. 50 § 5)
+                derogationsPre.push({
+                  course: code,
+                  courseTitle: info.title,
+                  code: p.code,
+                  titre: p.title
+                });
+              } else {
+                // Non acquis et absent du PAE : bloquant strict
+                blocking.push({
+                  course: code,
+                  courseTitle: info.title,
+                  code: p.code,
+                  titre: p.title
+                });
+              }
             }
           }
         }
 
-        // Répartition des options par domaine
-        const clean = (d) => d.replace(/^Domaine (?:de |des |du )?/, '').replace(/^du du /, 'du ');
-        const dom = {};
-        for (const code of sel) {
-          const ds = this.DOMAINES[code] || [];
-          if (ds.length === 0) continue;
-          const e = this.ECTS_MAP[code] || 0;
-          for (const [d] of ds) dom[d] = (dom[d] || 0) + e;
-        }
-
-        const entries = Object.entries(dom).sort((a, b) => b[1] - a[1]);
+        // Analyse disjointe des options par domaine
+        const optAnalysis = this.computeDisjointOptions();
         const e1 = this.ects[1] || 0;
         const e2 = this.ects[2] || 0;
         const tot = Math.round((e1 + e2) * 2) / 2;
 
         let h = 'Total PAE&nbsp;: <b>' + tot + '</b> cr&eacute;dits (Q1 = ' + e1 + ' cr &middot; Q2 = ' + e2 + ' cr)';
 
-        if (entries.length) {
+        if (optAnalysis.hasOptions && optAnalysis.entries.length) {
           h += '<br/>Cr&eacute;dits d\\'options par domaine&nbsp;: '
-             + entries.map(([d, v]) => clean(d) + '&nbsp;=&nbsp;<b>' + v + '</b>').join(' &middot; ');
-          const top = entries[0], second = entries.length > 1 ? entries[1] : ['&mdash;', 0];
-          h += '<br/>Option principale&nbsp;: ' + (top[1] >= 30
-                ? '<span class="pill good">' + clean(top[0]) + ' : ' + top[1] + ' cr (&ge; 30)</span>'
-                : '<span class="pill bad">' + clean(top[0]) + ' : ' + top[1] + ' cr (&lt; 30)</span>');
-          h += ' &nbsp;Mineure secondaire&nbsp;: ' + (second[1] >= 10
-                ? '<span class="pill good">' + clean(second[0]) + ' : ' + second[1] + ' cr (&ge; 10)</span>'
-                : '<span class="pill bad">' + (second[0] === '&mdash;' ? 'aucun 2<sup>e</sup> domaine' : clean(second[0]) + ' : ' + second[1] + ' cr (&lt; 10)') + '</span>');
+             + optAnalysis.entries.map(([d, v]) => d + '&nbsp;=&nbsp;<b>' + v + '</b>').join(' &middot; ');
+          
+          if (optAnalysis.major) {
+            const maj = optAnalysis.major;
+            h += '<br/>Option principale&nbsp;: ' + (maj.isSatisfied
+                  ? '<span class="pill good">' + maj.domain + ' : ' + maj.ects + ' cr (&ge; 30)</span>'
+                  : '<span class="pill bad">' + maj.domain + ' : ' + maj.ects + ' cr (&lt; 30)</span>');
+          }
+          if (optAnalysis.minor && optAnalysis.minor.domain) {
+            const min = optAnalysis.minor;
+            h += ' &nbsp;Mineure secondaire&nbsp;: ' + (min.isSatisfied
+                  ? '<span class="pill good">' + min.domain + ' : ' + min.ects + ' cr distincts (&ge; 10)</span>'
+                  : '<span class="pill bad">' + min.domain + ' : ' + min.ects + ' cr distincts (&lt; 10)</span>');
+          } else {
+            h += ' &nbsp;Mineure secondaire&nbsp;: <span class="pill bad">aucun 2<sup>e</sup> domaine distinct</span>';
+          }
+
+          // Avertissement explicite de non-cumul si des cours sont partagés entre les deux options sélectionnées
+          if (optAnalysis.sharedCourses && optAnalysis.sharedCourses.length > 0 && optAnalysis.major && optAnalysis.minor) {
+            const sharedList = optAnalysis.sharedCourses.map(c => '<code>' + c.code + '</code>').join(', ');
+            h += '<div style="margin-top: 0.6em; padding: 0.5em 0.8em; background: #fffdf4; border-left: 3px solid #f9ab00; border-radius: 3px; font-size: 12.5px; line-height: 1.45;">'
+               + '⚠️ <b>R&egrave;gle facultaire de non-cumul (cours partag&eacute;s)&nbsp;:</b><br/>'
+               + 'Le(s) cours ' + sharedList + ' appartien(nen)t simultan&eacute;ment &agrave; <em>' + optAnalysis.major.domain + '</em> et <em>' + optAnalysis.minor.domain + '</em>. '
+               + 'Au PAE, chaque cours doit &ecirc;tre allou&eacute; &agrave; <b>une seule option</b>.<br/>'
+               + 'En les allouant &agrave; votre majeure (' + optAnalysis.major.ects + ' cr), votre mineure ne dispose que de <b>' + optAnalysis.minor.ects + ' cr distincts</b>'
+               + (optAnalysis.minor.ects < 10 ? ' (<b>insuffisant</b>&nbsp;: 10 cr distincts requis).' : ' (&ge; 10 cr &check;).')
+               + '</div>';
+          }
         }
 
-        return { flags, blocking, report: h };
+        return { flags, blocking, derogationsPre, report: h };
       },
 
       // Export calendrier (.ics)

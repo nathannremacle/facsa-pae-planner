@@ -48,11 +48,11 @@ L'application s'appuie sur le moteur et l'ergonomie de l'outil horaire officiel 
 | **Export de l'agenda au format `.ics`** | — | ✓ *(Google Calendar, Apple, Outlook)* |
 | **Déclaration des cours déjà validés (Étape 1)** | — | ✓ *(Raccourcis Bloc 1, Blocs 1 & 2)* |
 | **Filtrage automatique des cours validés du PAE** | — | ✓ |
-| **Contrôle d'antériorité des prérequis bloquants** | — | ✓ *(Pastilles P et alertes jury)* |
+| **Contrôle d'antériorité des prérequis & dérogations** | — | ✓ *(Pastilles P vertes/ambrées/rouges, RGEE Art. 50 § 5)* |
 | **Détection des dérogations de corequis à déclarer** | — | ✓ *(Pastilles C et tableau récapitulatif)* |
 | **Comptabilisation précise des crédits ECTS** | Sommaire | ✓ *(Total, Q1, Q2 et équilibre)* |
-| **Simulateur d'orientation vers les 12 Masters (Étape 3)** | — | ✓ *(Accès direct, mineure, standard)* |
-| **Détail des cours de domaine requis par Master** | — | ✓ *(Regroupés par Bloc 2 et Bloc 3)* |
+| **Simulateur d'orientation vers les 12 Masters (Étape 3)** | — | ✓ *(Continuité optimale, mineure, réorientation)* |
+| **Détail des cours recommandés par Master** | — | ✓ *(Regroupés par Bloc 2 et Bloc 3)* |
 | **Persistance locale de la session (`localStorage`)** | — | ✓ *(Aucune perte au rechargement)* |
 
 ---
@@ -69,15 +69,19 @@ L'interface guide l'étudiant à travers **3 étapes progressives** :
 ### 2. Mon PAE & Horaire
 * Affichage du catalogue des cours de la faculté **débarrassé des cours déjà réussis**.
 * **Indicateurs visuels des exigences académiques** :
-  * Pastille `P` verte : prérequis validé.
-  * Pastille `P` rouge : prérequis manquant (inscription réglementairement impossible sans dérogation).
+  * Pastille `P` verte : prérequis validé les années antérieures.
+  * Pastille `P` ambrée : prérequis inscrit en parallèle au PAE (requiert une dérogation de fin de cycle du jury pour transformation en co-requis, selon l'Art. 50 § 5 du RGEE).
+  * Pastille `P` rouge : prérequis manquant (absent des acquis et du PAE, bloquant strict).
   * Pastille `C` verte : corequis acquis ou déjà sélectionné au PAE.
   * Pastille `C` orange : corequis manquant (dérogation officielle requise lors de l'inscription).
-* **Panneaux d'analyse officielle sous le tableau** : synthétisent les dérogations à introduire auprès du jury et confirment la validité du programme annuel.
+* **Panneaux d'analyse officielle sous le tableau** :
+  * Synthèse des dérogations de corequis à déclarer au jury lors de l'inscription.
+  * Encadré réglementaire sur les dérogations de fin de cycle pour prérequis (RGEE Art. 50 § 5).
+  * Contrôle des options avec **règle facultaire de non-cumul** : calcul disjoint évitant le double comptage pour les cours partagés entre majeure ($\ge 30$ ECTS) et mineure ($\ge 10$ ECTS distincts).
 * **Bascule horaire** : consultation de l'emploi du temps hebdomadaire avec identification en temps réel des chevauchements d'horaires.
 
 ### 3. Débouchés & Simulateur des 12 Masters
-* Analyse en continu de l'accès aux **12 filières de Master d'ingénieur civil** de l'ULiège :
+* Analyse en continu de la préparation vers les **12 filières de Master d'ingénieur civil** de l'ULiège :
   * *Informatique*
   * *Science des Données*
   * *Mécanique*
@@ -90,11 +94,12 @@ L'interface guide l'étudiant à travers **3 étapes progressives** :
   * *Mines et Géologue*
   * *Physicien*
   * *Architecte*
-* **Niveaux d'accès calculés selon les règles facultaires** :
-  * **Accès direct de plein droit garanti** : $\ge$ 30 ECTS dans les cours de l'option principale.
-  * **Accès avec mineure (passerelle allégée)** : 10 à 25 ECTS dans le domaine.
-  * **Programme standard** : moins de 10 ECTS.
-* **Tableaux détaillés par Bloc (Bloc 2 / Bloc 3)** : consultation des cours du domaine avec pastilles d'état (`Acquis`, `Au PAE`, `Non suivi`) et possibilité d'inscrire directement un cours manquant au PAE.
+* **Rappel légal FWB & Niveaux de préparation** :
+  * En FWB, le diplôme de bachelier ingénieur civil confère un **accès direct de plein droit à tous les Masters d'ingénieur civil** (120 ECTS fixes, **sans programme complémentaire « Bloc 0 »**).
+  * **Continuité directe optimale** : $\ge$ 30 ECTS dans les cours du domaine (tous les crédits de cours au choix restent 100% libres en Master).
+  * **Transition allégée avec mineure** : 10 à 25 ECTS dans le domaine (transition fluide, quelques crédits d'options de Master réalloués au rattrapage).
+  * **Autre filière / Réorientation** : moins de 10 ECTS (accès direct légal garanti à 120 ECTS, mais réallocation substantielle des cours d'options de Master pour combler les bases).
+* **Tableaux détaillés par Bloc (Bloc 2 / Bloc 3)** : consultation des cours recommandés du domaine avec pastilles d'état (`Acquis`, `Au PAE`, `Non suivi`) et possibilité d'inscrire directement un cours manquant au PAE.
 
 ---
 
