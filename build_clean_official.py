@@ -813,7 +813,7 @@ def build():
       </button>
       <button class="phase-tab" :class="{ active: phase == 3 }" @click="phase = 3">
         <span>3. Débouchés &amp; Masters</span>
-        <span class="phase-badge" :class="directMastersCount > 0 ? 'phase-badge-success' : ''" x-text="directMastersCount + ' optimal' + (directMastersCount > 1 ? 's' : '')"></span>
+        <span class="phase-badge" :class="directMastersCount > 0 ? 'phase-badge-success' : ''" x-text="directMastersCount + (directMastersCount > 1 ? ' optimaux' : ' optimal')"></span>
       </button>
     </div>
 """
@@ -939,7 +939,7 @@ def build():
               <li>
                 <b><span x-text="directMastersCount"></span> Master<span x-show="directMastersCount > 1">s</span> en continuit&eacute; directe optimale</b> (&ge; 30 cr&eacute;dits dans le domaine &mdash; options de Master 100% libres)
                 <template x-if="directMastersCount > 0">
-                  <span class="pill good" x-text="directMastersCount + ' optimal' + (directMastersCount > 1 ? 's' : '')"></span>
+                  <span class="pill good" x-text="directMastersCount + (directMastersCount > 1 ? ' optimaux' : ' optimal')"></span>
                 </template>
               </li>
               <li>
@@ -1432,7 +1432,7 @@ def build():
               </button>
             </div>
             <span id="cr">
-              <span class="num" x-text="directMastersCount">0</span> optimale<span x-show="directMastersCount > 1">s</span> &middot; <span class="num" x-text="mineureMastersCount">0</span> mineure<span x-show="mineureMastersCount > 1">s</span>
+              <span class="num" x-text="directMastersCount">0</span> <span x-text="directMastersCount > 1 ? 'optimaux' : 'optimal'"></span> &middot; <span class="num" x-text="mineureMastersCount">0</span> mineure<span x-show="mineureMastersCount > 1">s</span>
             </span>
           </div>
         </template>
