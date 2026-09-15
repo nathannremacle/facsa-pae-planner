@@ -242,10 +242,10 @@ def build():
     src = src.replace("../assets/icons.svg#", "#")
     src = re.sub(r"<body>", "<body>\n" + sprite, src, count=1)
 
-    # 5. Polices locales & titre officiel
+    # 5. Polices locales, titre officiel & favicon
     src = re.sub(r'<link href="https://fonts\.googleapis\.com[^>]*>', "", src)
     src = src.replace('"Arimo", "Arial"', '"Arimo", "Liberation Sans", "Arial"')
-    src = src.replace("<title>Horaire - ABICIV0099</title>", "<title>Horaire &amp; PAE interactif — ABICIV0099 (FACSA ULiège)</title>")
+    src = src.replace("<title>Horaire - ABICIV0099</title>", "<title>Horaire &amp; PAE interactif — ABICIV0099 (FACSA ULiège)</title>\n  <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\n  <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"favicon.ico\">")
 
     # 6. Partage vers l'outil officiel
     src = src.replace(
